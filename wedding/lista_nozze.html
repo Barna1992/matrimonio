@@ -5,14 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Matrimonio Andrea & Micol</title>
 <link rel="stylesheet" href="styles.css">
+<script src="common.js"></script> 
 <link href='https://fonts.googleapis.com/css?family=Caveat' rel='stylesheet'>
 <link href='https://fonts.googleapis.com/css?family=Amatic+SC' rel='stylesheet'>
 
 </head>
 <body>
 <div>
+  <div class="navbar-menu">
+    <img src="assets/cart_black.svg">
+    <div class="badge" id="cartBadge">0</div>
+  </div>
 
-  <div class="hero-section hero-section-bg menu-item" id="home">
+  <div class="hero-section hero-section-bg menu-item">
 
 <div class="hero-section-variant menu-item" id="wedding_list">
   <h2>Vuoi contribuire con il tuo regalo al nostro viaggio di nozze?</h2>
@@ -23,10 +28,26 @@
 </div>
 <script>
   document.addEventListener('DOMContentLoaded', function() {
+    function getCart() {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const value = cart.map(e => e.quantity).reduce((partialSum, a) => partialSum + a, 0)
+      document.getElementById('cartBadge').innerText = value;
+
+      // Show the badge if the number is greater than 0
+      if (value > 0) {
+          document.getElementById('cartBadge').style.display = 'block';
+      }
+      else {
+          document.getElementById('cartBadge').style.display = 'none';
+      }
+    }
+
+
+
+
     fetch('http://matrimonioam.pythonanywhere.com/api/items/')
         .then(response => response.json())
         .then(items => {
-            console.log(items)
             const container = document.getElementById('items-container');
             items.forEach(item => {
                 const itemHtml = `
@@ -34,9 +55,47 @@
                         <div class="object-img"><img src="${item.picture}"></div>
                         <div class="object-buy"><div class="price">${item.price}€</div></div>
                         <div class="object-title">${item.title}</div>
-                        <div class="object-cart"><div class="cart-icon"><img src='assets/cart.svg'></div><div class="cart-text">Aggiungi al carrello</div></div>
+                        <div class="object-cart"><div class="cart-icon"><img src='assets/cart.svg'></div><div class="cart-text" title="${item.title}" price="${item.price}" itemid="${item.id}">Aggiungi al carrello</div></div>
                     </div>`;
                 container.innerHTML += itemHtml;
+            });
+            const cartTextElements = document.querySelectorAll('.cart-text');
+            function updateCart(item) {
+              let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+              // Check if the item is already in the cart
+              const existingItem = cart.find(cartItem => cartItem.id === item.id);
+
+              if (existingItem) {
+                  // If the item exists, increase its quantity
+                  existingItem.quantity++;
+              } else {
+                  // If the item is not in the cart, add it
+                  cart.push({
+                      id: item.id,
+                      title: item.title,
+                      price: item.price,
+                      quantity: 1
+                  });
+              }
+
+              localStorage.setItem('cart', JSON.stringify(cart));
+            }   
+            cartTextElements.forEach(element => {
+                element.addEventListener('click', function () {
+                    // Get the corresponding item data
+                    const itemIndex = Array.from(cartTextElements).indexOf(element);
+                    const selectedItem = items[itemIndex];
+
+                    // Call the addToCart function with the selected item
+                    updateCart({
+                      id: element.getAttribute('itemid'),
+                      title: element.title,
+                      price: element.getAttribute('price'),
+                    })
+                    getCart()
+
+                });
             });
         })
         .catch(error => console.error('Error:', error));
