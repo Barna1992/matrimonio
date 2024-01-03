@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matrimonio Andrea & Micol</title>
+<link rel="stylesheet" href="styles.css">
+<link href='https://fonts.googleapis.com/css?family=Caveat' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Amatic+SC' rel='stylesheet'>
+
+</head>
+<body>
+<div>
+
+  <div class="hero-section hero-section-bg menu-item" id="home">
+
+<div class="hero-section-variant menu-item" id="wedding_list">
+  <h2>Vuoi contribuire con il tuo regalo al nostro viaggio di nozze?</h2>
+  <div class="lista-nozze-container" id='items-container'>
+  </div>
+</div>
+
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    fetch('http://127.0.0.1:8000/api/items/')
+        .then(response => response.json())
+        .then(items => {
+            console.log(items)
+            const container = document.getElementById('items-container');
+            items.forEach(item => {
+                const itemHtml = `
+                    <div class="object-card">
+                        <div class="object-img"><img src="${item.picture}"></div>
+                        <div class="object-buy"><div class="price">${item.price}€</div></div>
+                        <div class="object-title">${item.title}</div>
+                        <div class="object-cart"><div class="cart-icon"><img src='assets/cart.svg'></div><div class="cart-text">Aggiungi al carrello</div></div>
+                    </div>`;
+                container.innerHTML += itemHtml;
+            });
+        })
+        .catch(error => console.error('Error:', error));
+});
+
+</script>
+</body>
+</html>
+
