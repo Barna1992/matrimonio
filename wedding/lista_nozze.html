@@ -59,7 +59,7 @@
                     </div>`;
                 container.innerHTML += itemHtml;
             });
-            const cartTextElements = document.querySelectorAll('.cart-text');
+            const cartTextElements = document.querySelectorAll('.object-cart');
             function updateCart(item) {
               let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
@@ -87,11 +87,12 @@
                     const itemIndex = Array.from(cartTextElements).indexOf(element);
                     const selectedItem = items[itemIndex];
 
+                    let cartText = element.children[1] 
                     // Call the addToCart function with the selected item
                     updateCart({
-                      id: element.getAttribute('itemid'),
-                      title: element.title,
-                      price: element.getAttribute('price'),
+                      id: cartText.getAttribute('itemid'),
+                      title: cartText.title,
+                      price: cartText.getAttribute('price'),
                     })
                     getCart()
 
