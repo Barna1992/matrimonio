@@ -55,3 +55,7 @@ img {
     justify-content: end;
     cursor: pointer;
 }
+
+#cart-total {
+    text-align: center;
+}
