@@ -13,7 +13,7 @@
 <body>
 <div>
   <div class="navbar-menu">
-    <img src="assets/cart_black.svg">
+    <a href="cart-page.html"><img src="assets/cart_black.svg"></a>
     <div class="badge" id="cartBadge">0</div>
   </div>
 
@@ -55,7 +55,7 @@
                         <div class="object-img"><img src="${item.picture}"></div>
                         <div class="object-buy"><div class="price">${item.price}€</div></div>
                         <div class="object-title">${item.title}</div>
-                        <div class="object-cart"><div class="cart-icon"><img src='assets/cart.svg'></div><div class="cart-text" title="${item.title}" price="${item.price}" itemid="${item.id}">Aggiungi al carrello</div></div>
+                        <div class="object-cart"><div class="cart-icon"><img src='assets/cart.svg'></div><div class="cart-text" title="${item.title}" price="${item.price}" itemid="${item.id}" imgurl="${item.picture}">Aggiungi al carrello</div></div>
                     </div>`;
                 container.innerHTML += itemHtml;
             });
@@ -75,7 +75,8 @@
                       id: item.id,
                       title: item.title,
                       price: item.price,
-                      quantity: 1
+                      quantity: 1,
+                      img: item.img
                   });
               }
 
@@ -93,6 +94,7 @@
                       id: cartText.getAttribute('itemid'),
                       title: cartText.title,
                       price: cartText.getAttribute('price'),
+                      img: cartText.getAttribute('imgurl')
                     })
                     getCart()
 

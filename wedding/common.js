@@ -39,7 +39,5 @@ if (badgeNumber > 0) {
 else {
     document.getElementById('cartBadge').style.display = 'none';
 }
-console.log(cart)
-
 })
 
