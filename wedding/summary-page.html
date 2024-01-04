@@ -76,7 +76,7 @@
         <label for="comment">Lascia un commento agli sposi</label>
         <textarea id="comment" name="comment" rows="4" required></textarea>
 
-        <button type="submit">Invia Regalo</button>
+        <button type="submit" onclick="submitForm()">Invia Regalo</button>
     </form>
 
     <script>
@@ -135,6 +135,19 @@
                 return acc;
             }, 0);
             totalPriceElement.innerText = totalPrice.toFixed(2);
+        }
+
+        function submitForm() {
+            // Get form values
+            const giftGiverValue = document.getElementById('giftGiver').value;
+            const yourEmailValue = document.getElementById('yourEmail').value;
+            const commentValue = document.getElementById('comment').value;
+            event.preventDefault();
+            // Construct URL with form values
+            const url = `thanks.html?giftGiver=${encodeURIComponent(giftGiverValue)}&yourEmail=${encodeURIComponent(yourEmailValue)}&comment=${encodeURIComponent(commentValue)}`;
+
+            // Redirect to thanks.html
+            window.location.href = url;
         }
 
     </script>
