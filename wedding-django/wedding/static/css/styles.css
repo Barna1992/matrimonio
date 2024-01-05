@@ -686,3 +686,19 @@ body, html {
 .animate-cart {
   animation: scaleAnimation 1s ease-in-out;
 }
+
+@keyframes shakeAnimation {
+  0%, 100% {
+      transform: translateX(0);
+  }
+  25%, 75% {
+      transform: translateX(-5px);
+  }
+  50% {
+      transform: translateX(5px);
+  }
+}
+
+.shake-effect {
+  animation: shakeAnimation 1s ease-in-out;
+}

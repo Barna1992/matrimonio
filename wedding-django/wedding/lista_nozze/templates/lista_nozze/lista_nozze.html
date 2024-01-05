@@ -99,13 +99,20 @@
                       img: cartText.getAttribute('imgurl')
                     })
                     getCart()
-                    const cartIcon = document.querySelector('.navbar-menu .badge');
-                    cartIcon.classList.add('animate-cart');
+                    const badgeIcon = document.querySelector('.navbar-menu .badge');
+//                    badgeIcon.classList.add('animate-cart');
 
                     // Remove the class after the animation duration
+                    badgeIcon.classList.add('animate-cart');
                     setTimeout(() => {
-                        cartIcon.classList.remove('animate-cart');
-                    }, 2000);
+                        badgeIcon.classList.remove('animate-cart');
+                    }, 1000);
+
+                    const cartIcon = document.querySelector('.navbar-menu img');
+                    cartIcon.classList.add('shake-effect');
+                    setTimeout(() => {
+                        cartIcon.classList.remove('shake-effect');
+                    }, 1000);
 
                 });
             });
