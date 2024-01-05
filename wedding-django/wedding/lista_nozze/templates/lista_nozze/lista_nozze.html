@@ -99,6 +99,13 @@
                       img: cartText.getAttribute('imgurl')
                     })
                     getCart()
+                    const cartIcon = document.querySelector('.navbar-menu .badge');
+                    cartIcon.classList.add('animate-cart');
+
+                    // Remove the class after the animation duration
+                    setTimeout(() => {
+                        cartIcon.classList.remove('animate-cart');
+                    }, 2000);
 
                 });
             });
