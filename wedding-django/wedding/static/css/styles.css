@@ -578,6 +578,49 @@ body, html {
 }
 
 
+/* Styles for the closed menu button */
+.mobile-menu-button {
+  cursor: pointer;
+  display: none;
+}
+
+/* Styles for the open menu */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  z-index: 1000;
+}
+
+.mobile-menu-button img {
+  max-width: 30px;
+  position: fixed;
+  z-index: 10;
+  right: 5px;
+  top: 5px;
+}
+
+.mobile-menu ul {
+  list-style: none;
+  padding: 0;
+  text-align: center;
+}
+
+.mobile-menu li {
+  margin: 1rem 0;
+  border-bottom: solid 1px #ffffffcb
+}
+
+.mobile-menu a {
+  text-decoration: none;
+  color: black;
+  font-size: 1.5rem;
+}
+
+
 
 @media screen and (max-width: 500px) {
   .top-nav {
@@ -667,6 +710,9 @@ body, html {
     font-family: arial;
     font-weight: bolder;
     display: none;
+  }
+  .mobile-menu-button {
+    display: block;
   }
 }
 

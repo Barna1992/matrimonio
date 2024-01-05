@@ -21,13 +21,30 @@
           <!-- Add more navigation items here -->
         </ul>
       </nav>
-      <div class="menu-mobile">
-        <img src="assets/menu.svg">
-      </div>
+      <div class="mobile-menu-button" onclick="toggleMobileMenu()">
+        <img src="/static/images/menu.svg" alt="Mobile Menu">
+    </div>
+    
+    <!-- The mobile menu with items -->
+    <div class="mobile-menu">
+        <ul>
+            <li><a href="#" onclick="toggleMobileMenu()">Home</a></li>
+            <li><a href="#timeline" onclick="toggleMobileMenu()">La giornata</a></li>
+            <li><a href="#wedding_list" onclick="toggleMobileMenu()">Lista Nozze</a></li>
+            <li><a href="#album" onclick="toggleMobileMenu()">Album</a></li>
+        </ul>
+    </div>
 
     <main>
         {% block content %}{% endblock %}
     </main>
+
+    <script>
+      function toggleMobileMenu() {
+          const mobileMenu = document.querySelector('.mobile-menu');
+          mobileMenu.style.display = (mobileMenu.style.display === 'block') ? 'none' : 'block';
+      }
+    </script>
 
     <!-- Add your common JavaScript scripts or links here -->
 
