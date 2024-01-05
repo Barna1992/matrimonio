@@ -1,0 +1,298 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head_styles %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<div class="hero-section hero-section-bg menu-item" id="home">
+
+    <div class="save-the-date">
+      <h1>Micol e Andrea</h1>
+      <p>29 giugno 2024</p>
+    </div>
+  </div>
+  <div class="hero-section menu-item" id="welcome">
+  <div>
+    <h1>Ciao a tutti!</h1>
+    <h4>Siamo lieti di invitarvi al nostro matrimonio</h4>
+  </div>
+  <div class="two-side-pictures">
+    <div>
+      <div>
+        <img src="{% static 'images/two-side1.jpg' %}">
+      </div>
+      <div>
+        <p>immagine uno</p>
+      </div>
+    </div>
+    <div>
+      <div>
+        <img src="{% static 'images/two-side2.jpg' %}">
+      </div>
+      <div>
+        <p>immagine due</p>
+      </div>
+    </div>
+  </div>
+  <div class="countdown-bg">
+    <p>Mancano solamente:</p>
+    <div class="widget-wrap">
+      <div id="demo"></div>
+    </div>
+  </div>
+  </div>
+  <div class="menu-item" id="timeline">
+    <div class="section agenda">
+      <div class="row column text-center">
+    
+    
+        <div class="agenda__month">
+          <h2 class="agenda__month__title">29 giugno 2024</h2>
+          <ol class="agenda__list">
+            <li class="agenda__item toiletteur">
+              <article class="agenda__item__article">
+                <div class="agenda__item__detail">
+                  <div class="horaires"><time datetime="">10:30</time></div>
+                  <div class="desc">
+                    <h3 class="agenda__item__title">La cerimonia</h3>
+                    <p>Il matrimonio si svolgerà nella chiesa di Domegge di Cadore.</p>
+                    <a href="https://maps.app.goo.gl/TXx4VWVQ9rv2RaXW7"></a><img src="{% static 'images/chiesa.jpg' %}" class="img-card"></a>
+                  </div>
+                  <button class="edit__btn"><i class="fa fa-pencil"></i></button>
+                </div>
+                <div class="icon-container">
+                  <img src="{% static 'images/rings.svg' %}" class="agenda__item__date">
+                </div>
+              </article>
+            </li>
+            <li class="agenda__item">
+              <article class="agenda__item__article">
+                <div class="icon-container">
+                  <img src="{% static 'images/meal.svg' %}" class="agenda__item__date">
+              </div>
+                <div class="agenda__item__detail">
+                  <div class="horaires"><time datetime="">13:00</time></div>
+                  <div class="desc">
+                    <h3 class="agenda__item__title">Il pranzo</h3>
+                    <p>Saremo lieti di avervi come nostri ospiti allo Chalet al lago di San Vito di Cadore per il pranzo nuziale.</p>
+                    <img src="{% static 'images/chalet.jpeg' %}" class="img-card">
+                  </div>
+                  <button class="edit__btn"><i class="fa fa-pencil"></i></button>
+                </div>
+              </article>
+            </li>
+          </ol>
+        </div>
+        <div class="agenda__month">
+          <ol class="agenda__list">
+            <li class="agenda__item toiletteur">
+              <article class="agenda__item__article">
+                <div class="agenda__item__detail">
+                  <div class="horaires"><time datetime="">20:00</time></div>
+                  <div class="desc">
+                    <h3 class="agenda__item__title">La festa</h3>
+                    <p>La festa continuerà presso il rifugio Scotter di San Vito di Cadore.</p>
+                    <img src="{% static 'images/rifugio-scotter.jpg' %}" class="img-card">
+                  </div>
+                  <button class="edit__btn"><i class="fa fa-pencil"></i></button>
+                </div>
+                <div class="icon-container"><img src="{% static 'images/cocktails.svg' %}" class="agenda__item__date"></div>
+  
+              </article>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  <div class="hero-section-variant menu-item" id="wedding_list">
+    <h2>Vuoi contribuire con il tuo regalo al nostro viaggio di nozze?</h2>
+    <a href="lista_nozze"><img src="{% static 'images/globe.svg' %}" class="globe-img"></a>
+    <div class="action-button"><a href="lista_nozze">Contribuisci</a></div>
+  </div>
+  <div class="hero-section menu-item" id="album">
+  </div>
+  </div>
+  
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var saveTheDate = document.querySelector('.save-the-date');
+    // Delay the transition slightly to ensure the page is loaded
+    setTimeout(function() {
+      saveTheDate.classList.add('active');
+    }, 100);
+  });
+  
+  document.addEventListener('DOMContentLoaded', function() {
+    var elements = document.querySelectorAll('.agenda__item__detail');
+  
+    var observerOptions = {
+      root: null, // observes changes in the viewport
+      threshold: 0.1 // callback will be executed when 10% of the element is visible
+    };
+  
+    var observer = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          // Add the 'visible' class to the element when it comes into view
+          entry.target.classList.add('visible');
+  
+          // Optional: Unobserve the element after it's been revealed
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+  
+    elements.forEach(function(el) {
+      observer.observe(el);
+    });
+  
+  
+  });
+  
+  
+  document.addEventListener('DOMContentLoaded', function() {
+    var homeSection = document.getElementById('home');
+    var homeNavLink = document.getElementById('navbar-list'); // The navbar link you want to activate
+  
+    var observerOptions = {
+      root: null, // observes the document viewport
+      threshold: 0.1 // triggers when 50% of the target is visible
+    };
+  
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          // Add 'active' class when the home section is in view
+          homeNavLink.classList.remove('active');
+        } else {
+          // Remove 'active' class when the home section is not in view
+          homeNavLink.classList.add('active');
+        }
+      });
+    }, observerOptions);
+  
+    observer.observe(homeSection); // Observe the home section
+  });
+  
+  
+  document.addEventListener('DOMContentLoaded', function() {
+      const images = [
+          '/static/images/bg1.jpeg', // Add more image URLs
+          '/static/images/bg2.jpeg',
+          '/static/images/bg0.jpeg',
+        ];
+      let currentIndex = 0;
+  
+      function changeBackground() {
+          currentIndex = (currentIndex + 1) % images.length; // Cycle through images
+          document.querySelector('.hero-section-bg').style.backgroundImage = `url('${images[currentIndex]}')`;
+      }
+  
+      setInterval(changeBackground, 5000); // Change every 10000 milliseconds (10 seconds)
+  });
+  
+  document.addEventListener('DOMContentLoaded', function() {
+      var navItems = document.querySelectorAll('#navbar-list li a'); // Select all anchor tags inside list items
+  
+      navItems.forEach(function(item) {
+          item.addEventListener('click', function() {
+              // Remove 'selected' class from all items
+              navItems.forEach(function(nav) {
+                  nav.classList.remove('selected');
+              });
+  
+              // Add 'selected' class to clicked item
+              this.classList.add('selected');
+          });
+      });
+  });
+  
+  
+  document.addEventListener('DOMContentLoaded', (event) => {
+      window.addEventListener('scroll', () => {
+          let current = "";
+          document.querySelectorAll('.menu-item').forEach((section) => {
+              const sectionTop = section.offsetTop;
+              const sectionHeight = section.clientHeight;
+              if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
+                  current = section.getAttribute('id');
+              }
+          });
+  
+          document.querySelectorAll('#navbar-list a').forEach((a) => {
+              a.classList.remove('selected');
+              if (a.href.includes(current)) {
+                  a.classList.add('selected');
+              }
+          });
+      });
+  });
+  
+  
+  
+  </script>
+  <script type='text/javascript'>
+  
+  var converter = {
+    "days": "giorni",
+    "hours": "ore",
+    "mins": "minuti",
+    "secs": "secondi",
+  }
+  
+  function getSecondsToTargetDate() {
+      var now = new Date();
+      var targetDate = new Date('2024-06-29T10:30:00+02:00');
+  
+      var differenceInSeconds = (targetDate - now) / 1000; 
+      return differenceInSeconds;
+  }
+  
+  var counter = {
+    square: txt => {
+    let cell = document.createElement("div");
+    cell.className = `cell ${txt}`;
+    cell.innerHTML = `<div class="digits">0</div>
+    <div class="text">${converter[txt]}</div>`;
+    return cell;
+    },
+    
+    attach: instance => {
+    instance.target.className = "countdown";
+    if (instance.remain >= 86400) {
+    instance.target.appendChild(counter.square("days"));
+    instance.days = instance.target.querySelector(".days .digits");
+    }
+    if (instance.remain >= 3600) {
+    instance.target.appendChild(counter.square("hours"));
+    instance.hours = instance.target.querySelector(".hours .digits");
+    }
+    if (instance.remain >= 60) {
+    instance.target.appendChild(counter.square("mins"));
+    instance.mins = instance.target.querySelector(".mins .digits");
+    }
+    instance.target.appendChild(counter.square("secs"));
+    instance.secs = instance.target.querySelector(".secs .digits");
+    
+    instance.timer = setInterval(() => {counter.ticker(instance);}, 1000);
+    },
+    
+    ticker: instance => {
+    instance.remain--;
+    if (instance.remain <= 0) { clearInterval(instance.timer); instance.remain=0; if (typeof instance.after=="function" ) {instance.after();} } let secs=Math.floor(instance.remain); let days=Math.floor(secs / 86400); secs -=days * 86400; let hours=Math.floor(secs / 3600); secs -=hours * 3600; let mins=Math.floor(secs / 60); secs -=mins * 60; instance.secs.innerHTML=secs; if (instance.mins !==undefined) {instance.mins.innerHTML=mins;} if (instance.hours !==undefined) {instance.hours.innerHTML=hours;} if (instance.days !==undefined) {instance.days.innerHTML=days;} }, toSecs: till=> {
+        till = Math.floor(till / 1000);
+        let remain = till - Math.floor(Date.now() / 1000);
+        return remain < 0 ? 0 : remain; } }; window.onload=()=> {
+            counter.attach({
+            target: document.getElementById("demo"),
+            remain: getSecondsToTargetDate(),
+            after: () => {console.log("TIMER HAS ENDED!");} });
+    
+            };</script>
+  
+{% endblock %}

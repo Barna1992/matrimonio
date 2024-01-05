@@ -1,0 +1,673 @@
+/* Basic reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  height: 100%;
+  color: black;
+  background-color: #fff;
+  font-family: 'Amatic SC';
+}
+
+/* Styling for the hero section */
+.hero-section {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  position: relative;
+}
+
+.hero-section-variant {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  padding-top: 4rem;
+}
+
+
+.hero-section-bg {
+  background-image: url('/static/images/bg0.jpeg'); /* Replace with your image URL */
+  justify-content: center;
+  align-items: end;
+  flex-direction: row !important;
+  background-size: cover;
+  background-position: center;
+  transition: background-image 0.5s ease-in-out; 
+  font-family: 'Caveat';
+}
+
+/* Navigation bar styles */
+.top-nav ul {
+  list-style: none;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  z-index: 10;
+  width: 100%;
+  font-size: 1.5rem;
+  font-family: 'Caveat' !important;
+}
+
+.top-nav ul.active {
+  background-color: #fff;
+}
+
+.top-nav li {
+  margin: 20px;
+}
+
+.top-nav a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  padding-bottom: 0.5rem;
+}
+
+.top-nav .selected {
+  border-bottom: 1px solid black
+}
+
+
+
+/* Main title and subtitle styles */
+.save-the-date {
+  text-align: center;
+  padding: 3rem;
+}
+
+.save-the-date h1 {
+  font-size: 4rem;
+  margin-bottom: 0.5rem;
+}
+
+.save-the-date p {
+  font-size: 2rem;
+  letter-spacing: 1px;
+  font-weight: bold;
+  padding: 1rem;
+}
+
+/* Media queries for tablet devices */
+@media (max-width: 768px) {
+  .save-the-date h1 {
+    font-size: 3rem;
+  }
+
+  .save-the-date p {
+    font-size: 1rem;
+  }
+}
+
+/* Media queries for mobile devices */
+@media (max-width: 480px) {
+  .top-nav ul {
+    flex-direction: column;
+    top: 10px;
+    left: 10px;
+    transform: none;
+  }
+
+  .top-nav li {
+    padding: 10px;
+  }
+
+  .save-the-date h1 {
+    font-size: 2rem;
+  }
+
+  .save-the-date p {
+    font-size: 0.8rem;
+  }
+}
+
+
+
+.agenda {
+  width: 100%;
+}
+
+.agenda__month {
+  position: relative;
+  padding-bottom: 4rem;
+  
+  &:before {
+    content: '';
+    display: block;
+    width: 4px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: calc(50% - 2px);
+    background: #8dbedd;
+    z-index: 0;
+  }
+}
+
+.agenda__month__title {
+  position: relative;
+  width: 8rem;
+  height: 8rem;
+  padding: 4em;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 4rem;
+  background: #8dbedd;
+  border-radius: 50%;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: black;
+  text-align: center;
+}
+
+.agenda__list {
+  list-style: none;
+  margin: 0;
+  position: relative;
+
+  li + li {
+    margin-top: 4rem;
+  }
+}
+
+.agenda__item__detail {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  position: relative;
+  background: #fff;
+  border-radius: 20px;
+
+  @media (min-width: 1024px) {
+    flex-direction: row;
+  }
+
+  &:before {
+    content:'';
+    display: block;
+    width: 1.2rem;
+    height: 1.2rem;
+    background: #8dbedd;
+    position: absolute;
+    transform: rotate(45deg);
+    top: calc(50% - 0.6rem);
+  }
+
+  .horaires {
+    flex-basis: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #fff;
+    background: #009688;
+  }
+
+  .desc {
+    padding: 2rem;
+    text-align: left;
+    background-color: #8dbedd;
+  }
+}
+
+
+.agenda__item {
+
+   .agenda__item__detail {
+
+      .edit__btn {
+        position: absolute;
+        top: -1em;
+        right: -1em;
+      }
+
+    }
+  
+  @media (min-width: 640px) {
+
+    .agenda__item__article {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      &:before {
+        content: '';
+        display: block;
+        order: 2;
+        flex-basis: 40%;
+
+      }
+    }
+
+    .agenda__item__date {
+      order: 1;
+    }
+
+    .agenda__item__detail {
+      order: 0;
+      flex-basis: 40%;
+    }
+
+    &:nth-child(1n + 1) {
+      .agenda__item__detail {
+
+        &:before {
+          right: -0.6rem;
+        }
+      }
+    }
+
+    &:nth-child(1n + 2) {
+      .agenda__item__article {
+        &:before {
+          order: 0;
+        }
+      }
+
+      .agenda__item__detail {
+        order: 2;
+
+        &:before {
+          left: -0.6rem;
+        }
+        .edit__btn {
+          left: -1em;
+        }
+        @media (min-width: 1024px) {
+          .horaires {
+            order: 1;
+          }
+        }
+      }
+    }
+
+  }
+}
+
+.agenda__item__title {
+  font-weight: bold;
+  color: black;
+  text-align: center;
+  padding: 1rem;
+}
+
+.desc p {
+  color: black;
+}
+
+.agenda__item__date {
+
+  display: block;
+
+  @media (min-width: 640px) {
+    width: 6rem;
+  }
+
+  line-height: 4rem;
+  font-size: 1.4rem;
+
+}
+
+#timeline {
+  padding: 4rem;
+}
+
+.img-card {
+  padding: 1rem;
+  border-radius: 20%;
+  max-width: 12rem;
+  max-height: 12rem;  
+}
+
+.object-card {
+  background-color: white;
+  margin: 1.5rem;
+}
+
+
+.object-card:hover {
+  background-color: #EDEDED;
+}
+
+.object-cart:hover {
+  cursor: pointer;
+}
+
+.object-cart {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.5rem;
+  background-color: #cac7c7;
+
+}
+
+.object-img img {
+  max-width: 20rem;
+}
+
+.cart-icon {
+  background-color: #444444;
+  padding: 0.5rem 0.5rem;
+}
+
+.cart-icon img{
+  max-width: 2rem;
+}
+
+.cart-text {
+  width: 100%;
+  padding: 0 1rem;
+  text-align: center;
+  font-weight: bolder;
+  font-family: 'Amatic SC';
+}
+
+.object-title {
+  text-align: center;
+  padding: 1.5rem;
+  font-weight: bold;
+  font-size: 2rem;
+  color:#000
+}
+
+.object-buy {
+  padding: 1rem;
+  color: red;
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.lista-nozze-container {
+  display: flex;
+}
+
+.add {
+  background-color: #4985C3;
+  border-radius: 50%;
+  color: white;
+  padding: 1rem;
+}
+
+.agenda__item__detail {
+  opacity: 0; /* Initial state with full transparency */
+  transition: opacity 2s ease-in-out; /* Transition effect for the opacity property */
+}
+
+.agenda__item__detail.visible {
+  opacity: 1; /* Final state with full opacity */
+}
+
+
+@keyframes marginAnimation {
+  from {
+    margin-bottom: 500px;
+  }
+  to {
+    margin-bottom: 0px;
+  }
+}
+
+.save-the-date {
+  animation: marginAnimation 3s ease forwards;
+}
+
+.countdown-bg {
+  background-image: url('/static/images/contdown.jpg');
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 100%;
+  max-height: fit-content;
+}
+
+#welcome {
+  background-color: #fff;
+  color: black;
+  text-align: center;
+  height: 200vh;
+}
+
+#welcome h1 {
+  font-size: 5rem;
+  padding: 5rem;
+}
+
+#welcome h4, p {
+  font-size: 3rem;
+  padding: 3rem;
+}
+
+.widget-wrap {
+  padding: 40px;
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.5);
+  width: 50%;
+  margin-left: 25%;
+  margin-top: 5%;
+}
+
+.countdown-bg p {
+  font-weight: bolder;
+  font-size: 5rem;
+}
+.countdown {
+  display: flex;
+  margin: 0 auto;
+  min-width: 500px;
+}
+
+.countdown .cell {
+  flex-grow: 1;
+  flex-basis: 0;
+  padding: 10px;
+}
+
+.countdown .digits {
+  font-size: 4rem;
+  color: #000;
+  background: #fff;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.countdown .text {
+  margin-top: 10px;
+  color: #ddd;
+  font-size: 2rem;
+}
+
+.two-side-pictures {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 4rem;
+}
+
+.two-side-pictures img {
+  max-width: 50%;
+  border-radius: 50%;
+}
+
+
+@keyframes iconAnimation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.icon-container {
+  border: solid 3px #8dbedd;
+  padding: 1.5rem;
+  border-radius: 50%;
+  background-color: #8dbedd;
+  animation: iconAnimation 3s ease forwards;
+}
+
+.menu-mobile {
+  display: none;
+}
+
+.action-button {
+  background-color: #8dbedd;
+  border-radius: 20px;
+  min-width: 200px;
+  padding: 2rem;
+  text-align: center;
+  font-size: 2rem;
+}
+
+.action-button a {
+  text-decoration: none;
+  color: inherit;
+}
+
+
+.globe-img {
+  padding: 2rem;
+  max-width: 500px;
+}
+
+#wedding-list h2 {
+  text-align: center;
+}
+
+.navbar-menu {
+  position: fixed;
+  top: 0px;
+  z-index: 10;
+  width: 100%;
+  background-color: white;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.navbar-menu img {
+  max-width: 30px;
+  flex: right;
+  margin-right: 0.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.badge {
+  position: absolute;
+  top: 2px;
+  right: 30px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 3px 6px;
+  font-size: 10px;
+  font-family: arial;
+  font-weight: bolder;
+}
+
+
+
+@media screen and (max-width: 500px) {
+  .top-nav {
+      display: none;
+  }
+  .two-side-pictures {
+    display: block;
+  }
+  .hero-section {
+    height: fit-content;
+  }
+  #home {
+    height: 100vh;
+  }
+  #welcome {
+    height: 2100px;
+  }
+  .widget-wrap {
+    padding: 40px 5px;
+    border-radius: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    width: 50%;
+    margin-left: 25%;
+    margin-top: 5%;
+  }
+  .countdown .digits {
+    font-size: 2rem;
+    color: #000;
+    background: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    min-width: 40px;
+  }
+  .countdown {
+    display: block;
+    min-width: auto;
+  }
+  .cell {
+    display: flex;
+    justify-content: space-between;
+  }
+  .lista-nozze-container {
+    display: block;
+    max-width: 90%;
+  }
+  .object-img img {
+    max-width: 100%;
+  }
+  .desc p, h4 {
+    font-size: 1.5rem;
+    padding: 0.5rem;
+  }
+  .img-card {
+    border-radius: 20%;
+    max-width: 100%;
+  }
+  .agenda__item__date {
+    max-width: 100%;
+  }
+  .menu-mobile {
+    display: block;
+  }
+  .menu-mobile img {
+    max-width: 30px;
+    position: fixed;
+    z-index: 10;
+    right: 5px;
+    top: 5px;
+  }
+  .globe-img {
+    padding: 1rem;
+    max-width: 300px;
+  }
+  #wedding_list h2 {
+    padding: 1rem;
+    text-align: center;
+  }
+  .badge {
+    position: absolute;
+    top: 2px;
+    right: 30px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 3px 6px;
+    font-size: 10px;
+    font-family: arial;
+    font-weight: bolder;
+    display: none;
+  }
+}
+
+

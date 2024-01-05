@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ringraziamento</title>
+    <!-- Add any additional styles or scripts as needed -->
+    <style>
+        /* Add your styling here */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            padding: 1rem;
+        }
+        p {
+            text-align: center;
+        }
+        .container {
+            padding: 4rem;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+    <h1>Grazie mille!</h1>
+
+
+    <script>
+        // Function to get URL parameters by name
+        function getUrlParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        // Retrieve the "giftGiver" parameter from the URL
+        const giftGiver = getUrlParameter('giftGiver');
+        const price = getUrlParameter('price');
+
+        // Display a personalized thank you message
+        document.write(`<p>Grazie ${giftGiver} per il tuo contributo!</p>`);
+        document.write(`<p>Puoi completare l'ordine effettuando il pagamento di <strong> ${price} € </strong> tramite un bonifico bancario al seguente IBAN:</p>`);
+    </script>
+    <p></p>
+    <p>IBAN</p>
+    </div>
+</body>
+</html>

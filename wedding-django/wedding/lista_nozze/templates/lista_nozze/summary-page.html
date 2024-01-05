@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/x-icon" href="assets/wedding.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finalizza</title>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <!-- Add any additional styles or scripts as needed -->
+    <style>
+        /* Add your styling here */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            resize: vertical; /* Allow vertical resizing of the textarea */
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+        h1 {
+            text-align: center;
+        }
+    </style>
+        <link rel="stylesheet" href="/static/css/cart-style.css">
+
+</head>
+<body>
+
+    <h1>Riepilogo del tuo regalo</h1>
+    <div id="cart-items-container">
+        <!-- Cart items will be dynamically added here -->
+    </div>
+
+    <div id="cart-total">
+        <strong>Totale: <span id="total-price">0.00</span>€</strong>
+    </div>
+
+    <h1>Lasciaci alcune informazioni</h1>
+
+    <form>
+        <label for="giftGiver">Chi ci sta facendo il regalo</label>
+        <input type="text" id="giftGiver" name="giftGiver" required>
+
+        <label for="yourEmail">La tua email</label>
+        <input type="email" id="yourEmail" name="yourEmail" required>
+
+        <label for="comment">Lascia un commento agli sposi</label>
+        <textarea id="comment" name="comment" rows="4" required></textarea>
+
+        <button type="submit" onclick="submitForm()">Invia Regalo</button>
+    </form>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Retrieve the cart from localStorage
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            // Get the container to display cart items
+            const cartItemsContainer = document.getElementById('cart-items-container');
+
+            // Loop through each item in the cart
+            cart.forEach(item => {
+                // Try casting item.price to float
+                try {
+                    item.price = parseFloat(item.price);
+                    if (isNaN(item.price)) {
+                        throw new Error('Invalid price');
+                    }
+                } catch (error) {
+                    console.error('Invalid price for item:', item);
+                    return;
+                }
+
+                // Create a div for each item
+                const cartItemDiv = document.createElement('div');
+                cartItemDiv.className = 'cart-item';
+
+                // Display image
+                const imageItem = document.createElement('img');
+                imageItem.src = item.img;
+
+                // Display item details
+                const itemDetails = document.createElement('div');
+                itemDetails.className = 'item-title'
+                itemDetails.innerHTML = `${item.title}`;
+
+
+                // Append elements to the cart item div
+                cartItemDiv.appendChild(imageItem);
+                cartItemDiv.appendChild(itemDetails);
+
+                // Append the cart item div to the container
+                cartItemsContainer.appendChild(cartItemDiv);
+
+                // Update the total for the initial cart
+                updateTotal(cart);
+            });
+        });
+
+        function updateTotal(cart) {
+            const totalPriceElement = document.getElementById('total-price');
+            const totalPrice = cart.reduce((acc, item) => {
+                // Ensure item.price is a valid number before adding to the total
+                if (!isNaN(item.price)) {
+                    acc += item.price * item.quantity;
+                }
+                return acc;
+            }, 0);
+            totalPriceElement.innerText = totalPrice.toFixed(2);
+        }
+
+        function submitForm() {
+            // Get form values
+            const giftGiverValue = document.getElementById('giftGiver').value;
+            const yourEmailValue = document.getElementById('yourEmail').value;
+            const commentValue = document.getElementById('comment').value;
+            event.preventDefault();
+            // Construct URL with form values
+
+            const itemTitleElements = document.querySelectorAll('.item-title');
+
+            // Initialize an empty string to store merged values
+            let mergedString = '';
+
+            // Iterate over the selected elements
+            itemTitleElements.forEach(itemTitleElement => {
+                // Append the innerText of each element to the merged string
+                mergedString += itemTitleElement.innerText + ' ';
+            });
+
+            const itemTitles = mergedString;
+            const itemPrice = document.getElementById("total-price").innerText;
+
+            // Prepare data for POST request
+            const data = {
+                name: giftGiverValue,
+                email: yourEmailValue,
+                comment: commentValue,
+                item_titles: itemTitles,  // Match the field name in your model
+                item_price: parseFloat(itemPrice),  // Convert to float
+            };
+
+
+            const url = `/lista_nozze/thanks?giftGiver=${encodeURIComponent(giftGiverValue)}&yourEmail=${encodeURIComponent(yourEmailValue)}&comment=${encodeURIComponent(commentValue)}&price=${encodeURIComponent(parseFloat(itemPrice))}`;
+
+            
+            $.ajax({
+                    url: 'http://matrimonioam.pythonanywhere.com/api/friends/',
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(data),
+                    success: function(result) {
+                        window.location.href = url;
+                    },
+                    error: function(error) {
+                        console.error('Error:', error);
+                    }
+                });
+
+
+            
+        }
+
+    </script>
+
+</body>
+</html>

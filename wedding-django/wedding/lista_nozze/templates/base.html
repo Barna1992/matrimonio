@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Matrimonio Andrea e Micol{% endblock %}</title>
+    <link href='https://fonts.googleapis.com/css?family=Caveat' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Amatic+SC' rel='stylesheet'>
+    <!-- Additional head blocks for customization -->
+    {% block head_styles %}{% endblock %}
+    {% block head_scripts %}{% endblock %}
+</head>
+<body>
+
+    <nav class="top-nav">
+        <ul id="navbar-list">
+          <li><a href="#home" class="selected">Home</a></li>
+          <li id="navbar-timeline"><a href="#timeline">La giornata</a></li>
+          <li><a href="#wedding_list">Lista nozze</a></li>
+          <li><a href="#album">Album</a></li>
+          <!-- Add more navigation items here -->
+        </ul>
+      </nav>
+      <div class="menu-mobile">
+        <img src="assets/menu.svg">
+      </div>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Add your common JavaScript scripts or links here -->
+
+</body>
+</html>

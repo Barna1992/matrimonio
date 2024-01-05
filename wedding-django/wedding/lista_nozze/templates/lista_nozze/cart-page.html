@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/cart-style.css">
+    <title>Carrello</title>
+    <!-- Add any additional styles or scripts as needed -->
+    <style>
+        /* Add your styling here */
+    </style>
+</head>
+<body>
+
+    <h1>Il tuo carrello</h1>
+
+    <div id="cart-items-container">
+        <!-- Cart items will be dynamically added here -->
+    </div>
+
+    <div id="cart-total">
+        <strong>Total: €<span id="total-price">0.00</span></strong>
+    </div>
+
+    <button id="purchase-button" onclick="purchase()">Acquista</button>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Retrieve the cart from localStorage
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            // Get the container to display cart items
+            const cartItemsContainer = document.getElementById('cart-items-container');
+
+            // Loop through each item in the cart
+            cart.forEach(item => {
+                // Try casting item.price to float
+                try {
+                    item.price = parseFloat(item.price);
+                    if (isNaN(item.price)) {
+                        throw new Error('Invalid price');
+                    }
+                } catch (error) {
+                    console.error('Invalid price for item:', item);
+                    return;
+                }
+
+                // Create a div for each item
+                const cartItemDiv = document.createElement('div');
+                cartItemDiv.className = 'cart-item';
+
+                const imageContainer = document.createElement('div');
+                imageContainer.className = 'image-container'
+
+                // Display image
+                const imageItem = document.createElement('img');
+                imageItem.src = item.img;
+
+                imageContainer.appendChild(imageItem)
+
+                // Display delete button
+                const deleteButton = document.createElement('div');
+                deleteButton.className = 'delete-button';
+                deleteButton.innerHTML = '<span>X</span>';
+                deleteButton.children[0].addEventListener('click', function () {
+                    // Remove the item from the page and local storage
+                    removeCartItem(cartItemDiv, item.id);
+                });
+
+                // Display quantity input
+                const quantityInput = document.createElement('input');
+                quantityInput.type = 'number';
+                quantityInput.value = item.quantity;
+                quantityInput.min = 1;
+                quantityInput.addEventListener('input', function () {
+                    // Update quantity and recalculate total
+                    item.quantity = parseInt(quantityInput.value);
+                    updateCartItem(cartItemDiv, item);
+                    updateTotal(cart);
+                    // Update quantity in local storage
+                    updateQuantityInLocalStorage(item.id, item.quantity);
+                });
+
+                // Display item details
+                const itemDetails = document.createElement('p');
+                itemDetails.innerHTML = `${item.title} - €${item.price.toFixed(2)}`;
+
+                // Display total price for the item
+                const totalPrice = document.createElement('div');
+                totalPrice.className = 'total-price';
+                totalPrice.innerHTML = `Totale provvisorio: €<span>${(item.price * item.quantity).toFixed(2)}</span>`;
+
+                const itemRow = document.createElement('div');
+                itemRow.className = 'item-row';
+                itemRow.appendChild(itemDetails);
+                itemRow.appendChild(quantityInput);
+
+                // Append elements to the cart item div
+                cartItemDiv.appendChild(deleteButton);
+                cartItemDiv.appendChild(imageContainer);
+                cartItemDiv.appendChild(itemRow);
+                cartItemDiv.appendChild(totalPrice);
+
+                // Append the cart item div to the container
+                cartItemsContainer.appendChild(cartItemDiv);
+
+                // Update the total for the initial cart
+                updateTotal(cart);
+            });
+        });
+
+        // Function to update a cart item's details
+        function updateCartItem(cartItemDiv, item) {
+            const totalPriceSpan = cartItemDiv.querySelector('.total-price span');
+            totalPriceSpan.innerText = (item.price * item.quantity).toFixed(2);
+        }
+
+        // Function to update the total price for the entire cart
+        function updateTotal(cart) {
+            const totalPriceElement = document.getElementById('total-price');
+            const totalPrice = cart.reduce((acc, item) => {
+                // Ensure item.price is a valid number before adding to the total
+                if (!isNaN(item.price)) {
+                    acc += item.price * item.quantity;
+                }
+                return acc;
+            }, 0);
+            totalPriceElement.innerText = totalPrice.toFixed(2);
+        }
+
+        // Function to handle the purchase button click
+        function purchase() {
+            // Perform purchase logic (you can implement this based on your needs)
+            if ( JSON.parse(localStorage.getItem('cart')).length === 0 ) {
+                alert('Il carrello è vuoto!');
+            }
+            else {
+                window.location.href = '/lista_nozze/summary'
+            }
+            
+        }
+
+        // Function to remove a cart item from the page and local storage
+        function removeCartItem(cartItemDiv, itemId) {
+            // Remove the item from the page
+            cartItemDiv.remove();
+
+            // Remove the item from local storage
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const updatedCart = cart.filter(item => item.id !== itemId);
+            localStorage.setItem('cart', JSON.stringify(updatedCart));
+
+            // Update the total after removal
+            updateTotal(updatedCart);
+        }
+        
+        // Function to update quantity in local storage
+        function updateQuantityInLocalStorage(itemId, newQuantity) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            // Find the item in the cart
+            const updatedCart = cart.map(item => {
+                if (item.id === itemId) {
+                    return { ...item, quantity: newQuantity };
+                }
+                return item;
+            });
+            // Update local storage with the modified cart
+            localStorage.setItem('cart', JSON.stringify(updatedCart));
+        }
+    </script>
+</body>
+</html>
