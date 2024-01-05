@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="icon" type="image/x-icon" href="assets/wedding.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Finalizza</title>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <!-- Add any additional styles or scripts as needed -->
     <style>
         /* Add your styling here */
@@ -145,7 +147,6 @@
             const commentValue = document.getElementById('comment').value;
             event.preventDefault();
             // Construct URL with form values
-            const url = `thanks.html?giftGiver=${encodeURIComponent(giftGiverValue)}&yourEmail=${encodeURIComponent(yourEmailValue)}&comment=${encodeURIComponent(commentValue)}`;
 
             const itemTitleElements = document.querySelectorAll('.item-title');
 
@@ -170,28 +171,25 @@
                 item_price: parseFloat(itemPrice),  // Convert to float
             };
 
-            // Send POST request using fetch
-            fetch('http://matrimonioam.pythonanywhere.com/api/friends/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    // Add any additional headers if needed
-                },
-                body: JSON.stringify(data),
-            })
-            .then(response => response.json())
-            .then(result => {
-                console.log('Friend created successfully:', result);
-                // Handle success, e.g., redirect or display a success message
-            })
-            .catch(error => {
-                console.error('Error creating Friend:', error);
-                // Handle error, e.g., display an error message
-            });
+
+            const url = `thanks.html?giftGiver=${encodeURIComponent(giftGiverValue)}&yourEmail=${encodeURIComponent(yourEmailValue)}&comment=${encodeURIComponent(commentValue)}&price=${encodeURIComponent(parseFloat(itemPrice))}`;
+
+            
+            $.ajax({
+                    url: 'http://matrimonioam.pythonanywhere.com/api/friends/',
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(data),
+                    success: function(result) {
+                        window.location.href = url;
+                    },
+                    error: function(error) {
+                        console.error('Error:', error);
+                    }
+                });
 
 
-            // Redirect to thanks.html
-            window.location.href = url;
+            
         }
 
     </script>

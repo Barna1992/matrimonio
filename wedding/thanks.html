@@ -41,11 +41,13 @@
 
         // Retrieve the "giftGiver" parameter from the URL
         const giftGiver = getUrlParameter('giftGiver');
+        const price = getUrlParameter('price');
 
         // Display a personalized thank you message
         document.write(`<p>Grazie ${giftGiver} per il tuo contributo!</p>`);
+        document.write(`<p>Puoi completare l'ordine effettuando il pagamento di <strong> ${price} € </strong> tramite un bonifico bancario al seguente IBAN:</p>`);
     </script>
-    <p>Puoi completare il pagamento effettuando un bonifico al seguente IBAN:</p>
+    <p></p>
     <p>IBAN</p>
     </div>
 </body>
