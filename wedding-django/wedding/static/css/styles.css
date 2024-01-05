@@ -620,7 +620,13 @@ body, html {
   font-size: 1.5rem;
 }
 
+.small-screen {
+  display: none;
+}
 
+.large-screen {
+  display: block;
+}
 
 @media screen and (max-width: 500px) {
   .top-nav {
@@ -714,6 +720,20 @@ body, html {
   .mobile-menu-button {
     display: block;
   }
+  .icon-container {
+    transform: scale(0.7);
+  }
+  .agenda__item__date {
+    transform: scale(0.7);
+  }
+  .small-screen {
+    display: block;
+  }
+  
+  .large-screen {
+    display: none;
+  }
+
 }
 
 

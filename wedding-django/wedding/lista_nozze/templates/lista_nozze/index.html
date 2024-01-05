@@ -53,8 +53,8 @@
           <h2 class="agenda__month__title">29 giugno 2024</h2>
           <ol class="agenda__list">
             <li class="agenda__item toiletteur">
-              <article class="agenda__item__article">
-                <div class="agenda__item__detail">
+              <article class="agenda__item__article to-be-inverted">
+                <div class="agenda__item__detail div-large">
                   <div class="horaires"><time datetime="">10:30</time></div>
                   <div class="desc">
                     <h3 class="agenda__item__title">La cerimonia</h3>
@@ -63,7 +63,7 @@
                   </div>
                   <button class="edit__btn"><i class="fa fa-pencil"></i></button>
                 </div>
-                <div class="icon-container">
+                <div class="icon-container icon-large">
                   <img src="{% static 'images/rings.svg' %}" class="agenda__item__date">
                 </div>
               </article>
@@ -89,8 +89,8 @@
         <div class="agenda__month">
           <ol class="agenda__list">
             <li class="agenda__item toiletteur">
-              <article class="agenda__item__article">
-                <div class="agenda__item__detail">
+              <article class="agenda__item__article to-be-inverted">
+                <div class="agenda__item__detail div-large">
                   <div class="horaires"><time datetime="">20:00</time></div>
                   <div class="desc">
                     <h3 class="agenda__item__title">La festa</h3>
@@ -99,7 +99,7 @@
                   </div>
                   <button class="edit__btn"><i class="fa fa-pencil"></i></button>
                 </div>
-                <div class="icon-container"><img src="{% static 'images/cocktails.svg' %}" class="agenda__item__date"></div>
+                <div class="icon-container icon-large"><img src="{% static 'images/cocktails.svg' %}" class="agenda__item__date"></div>
   
               </article>
             </li>
@@ -294,5 +294,31 @@
             after: () => {console.log("TIMER HAS ENDED!");} });
     
             };</script>
+
+<script>
+    // JavaScript to invert the order of elements on small screens
+    function invertOrderOnSmallScreens() {
+        const pairs = document.querySelectorAll('.to-be-inverted');
+        
+        pairs.forEach(pair => {
+            const content = pair.querySelector('.div-large');
+            const img = pair.querySelector('.icon-large');
+
+            if (window.innerWidth <= 600) {
+                // If small screen, invert the order
+                pair.insertBefore(img, content);
+            } else {
+                // If not small screen, revert to original order
+                pair.insertBefore(content, img);
+            }
+        });
+    }
+
+    // Initial inversion on page load
+    invertOrderOnSmallScreens();
+
+    // Listen for window resize to update the order dynamically
+    window.addEventListener('resize', invertOrderOnSmallScreens);
+</script>
   
 {% endblock %}
