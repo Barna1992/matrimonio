@@ -50,15 +50,20 @@
                 const cartItemDiv = document.createElement('div');
                 cartItemDiv.className = 'cart-item';
 
+                const imageContainer = document.createElement('div');
+                imageContainer.className = 'image-container'
+
                 // Display image
                 const imageItem = document.createElement('img');
                 imageItem.src = item.img;
+
+                imageContainer.appendChild(imageItem)
 
                 // Display delete button
                 const deleteButton = document.createElement('div');
                 deleteButton.className = 'delete-button';
                 deleteButton.innerHTML = '<span>X</span>';
-                deleteButton.addEventListener('click', function () {
+                deleteButton.children[0].addEventListener('click', function () {
                     // Remove the item from the page and local storage
                     removeCartItem(cartItemDiv, item.id);
                 });
@@ -78,19 +83,23 @@
                 });
 
                 // Display item details
-                const itemDetails = document.createElement('div');
-                itemDetails.innerHTML = `${item.title} - €${item.price.toFixed(2)} each`;
+                const itemDetails = document.createElement('p');
+                itemDetails.innerHTML = `${item.title} - €${item.price.toFixed(2)}`;
 
                 // Display total price for the item
                 const totalPrice = document.createElement('div');
                 totalPrice.className = 'total-price';
-                totalPrice.innerHTML = `Total: €<span>${(item.price * item.quantity).toFixed(2)}</span>`;
+                totalPrice.innerHTML = `Totale provvisorio: €<span>${(item.price * item.quantity).toFixed(2)}</span>`;
+
+                const itemRow = document.createElement('div');
+                itemRow.className = 'item-row';
+                itemRow.appendChild(itemDetails);
+                itemRow.appendChild(quantityInput);
 
                 // Append elements to the cart item div
                 cartItemDiv.appendChild(deleteButton);
-                cartItemDiv.appendChild(imageItem);
-                cartItemDiv.appendChild(quantityInput);
-                cartItemDiv.appendChild(itemDetails);
+                cartItemDiv.appendChild(imageContainer);
+                cartItemDiv.appendChild(itemRow);
                 cartItemDiv.appendChild(totalPrice);
 
                 // Append the cart item div to the container

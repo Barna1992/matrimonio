@@ -9,7 +9,7 @@ h1 {
 }
 
 #cart-items-container {
-    max-width: 800px;
+    max-width: fit-content;
     margin: 20px auto;
 }
 
@@ -59,3 +59,30 @@ img {
 #cart-total {
     text-align: center;
 }
+
+.item-row {
+    display: flex;
+    padding: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+.item-row input {
+    margin: 1rem;
+}
+
+.item-row p {
+    padding: 1rem 0;
+}
+
+.total-price {
+    text-align: center;
+}
+.total-price span {
+    font-weight: 900;
+}
+
+.image-container {
+    display: flex;
+    justify-content: center;
+}
+
