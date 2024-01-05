@@ -8,3 +8,14 @@ class Item(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Friend(models.Model):
+    name = models.CharField(max_length=255)
+    email = models.CharField(max_length=50)
+    comment = models.TextField()
+    item_titles = models.CharField(max_length=255)  
+    item_price = models.FloatField() 
+
+    def __str__(self):
+        return self.name

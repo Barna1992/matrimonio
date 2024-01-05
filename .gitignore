@@ -1,2 +1,5 @@
 wedding-django/venv/
 wedding/assets/
+wedding-django/wedding/db.sqlite3
+wedding-django/wedding/lista_nozze/__pycache__
+*.pyc*

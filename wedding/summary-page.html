@@ -110,6 +110,7 @@
 
                 // Display item details
                 const itemDetails = document.createElement('div');
+                itemDetails.className = 'item-title'
                 itemDetails.innerHTML = `${item.title}`;
 
 
@@ -145,6 +146,49 @@
             event.preventDefault();
             // Construct URL with form values
             const url = `thanks.html?giftGiver=${encodeURIComponent(giftGiverValue)}&yourEmail=${encodeURIComponent(yourEmailValue)}&comment=${encodeURIComponent(commentValue)}`;
+
+            const itemTitleElements = document.querySelectorAll('.item-title');
+
+            // Initialize an empty string to store merged values
+            let mergedString = '';
+
+            // Iterate over the selected elements
+            itemTitleElements.forEach(itemTitleElement => {
+                // Append the innerText of each element to the merged string
+                mergedString += itemTitleElement.innerText + ' ';
+            });
+
+            const itemTitles = mergedString;
+            const itemPrice = document.getElementById("total-price").innerText;
+
+            // Prepare data for POST request
+            const data = {
+                name: giftGiverValue,
+                email: yourEmailValue,
+                comment: commentValue,
+                item_titles: itemTitles,  // Match the field name in your model
+                item_price: parseFloat(itemPrice),  // Convert to float
+            };
+
+            // Send POST request using fetch
+            fetch('http://127.0.0.1:8000/api/friends/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    // Add any additional headers if needed
+                },
+                body: JSON.stringify(data),
+            })
+            .then(response => response.json())
+            .then(result => {
+                console.log('Friend created successfully:', result);
+                // Handle success, e.g., redirect or display a success message
+            })
+            .catch(error => {
+                console.error('Error creating Friend:', error);
+                // Handle error, e.g., display an error message
+            });
+
 
             // Redirect to thanks.html
             window.location.href = url;
