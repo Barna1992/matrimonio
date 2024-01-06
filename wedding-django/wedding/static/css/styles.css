@@ -376,6 +376,41 @@ body, html {
   padding: 0.5rem 0.5rem;
 }
 
+.heart-container {
+  display: flex;
+  justify-content: center;
+}
+
+
+@keyframes heartScaleAnimation {
+  0% {
+      transform: scale(0.7);
+  }
+  50% {
+      transform: scale(1);
+  }
+  100% {
+      transform: scale(0.7);
+  }
+}
+
+
+@keyframes heartScaleAnimationSmall {
+  0% {
+      transform: scale(0.3);
+  }
+  50% {
+      transform: scale(0.5);
+  }
+  100% {
+      transform: scale(0.3);
+  }
+}
+
+.heart-container img {
+  animation: heartScaleAnimation 2s infinite;
+}
+
 .cart-icon img{
   max-width: 2rem;
 }
@@ -752,6 +787,9 @@ body, html {
     height: auto;
   }
  
+  .heart-container img {
+    animation: heartScaleAnimationSmall 2s infinite;
+  }
   
   .large-screen {
     display: none;
