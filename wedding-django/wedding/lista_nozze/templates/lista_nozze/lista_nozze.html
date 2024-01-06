@@ -101,6 +101,14 @@
                     if ( parseInt(quantity) > 0 ) {
                       cartText.setAttribute('quantity', parseInt(quantity) - 1)
                     }
+                    if ( parseInt(quantity) === 1 ) {
+                      let parent = element.parentElement
+                      element.style.display = 'none'
+                      let divChild = document.createElement('div')
+                      divChild.className = 'object-cart-expired'
+                      divChild.innerHTML = '<p>Esaurito</p>'
+                      parent.appendChild(divChild)
+                    }
                     // Call the addToCart function with the selected item
                     updateCart({
                       id: cartText.getAttribute('itemid'),
