@@ -60,7 +60,7 @@
                   ${item.quantity > 0 ?
                       `<div class="object-cart">
                           <div class="cart-icon"><img src="{% static 'images/cart.svg' %}"></div>
-                          <div class="cart-text" title="${item.title}" price="${item.price}" itemid="${item.id}" imgurl="${item.picture}">Aggiungi al carrello</div>
+                          <div class="cart-text" title="${item.title}" price="${item.price}" itemid="${item.id}" imgurl="${item.picture}" quantity="${item.quantity}">Aggiungi al carrello</div>
                       </div>` :
                       `<div class="object-cart-expired"><p>Esaurito</p></div>`
                   }
@@ -100,9 +100,6 @@
                     let quantity = cartText.getAttribute('quantity')
                     if ( parseInt(quantity) > 0 ) {
                       cartText.setAttribute('quantity', parseInt(quantity) - 1)
-                    }
-                    if ( parseInt(quantity) === 1 ) {
-                      element.innerHTML = '<p>Esaurito</p>'
                     }
                     // Call the addToCart function with the selected item
                     updateCart({
