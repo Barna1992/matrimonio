@@ -52,14 +52,20 @@
         .then(items => {
             const container = document.getElementById('items-container');
             items.forEach(item => {
-                const itemHtml = `
-                    <div class="object-card">
-                        <div class="object-img"><img src="${item.picture}"></div>
-                        <div class="object-buy"><div class="price">${item.price}€</div></div>
-                        <div class="object-title">${item.title}</div>
-                        <div class="object-cart"><div class="cart-icon"><img src="{% static 'images/cart.svg' %}"></div><div class="cart-text" title="${item.title}" price="${item.price}" itemid="${item.id}" imgurl="${item.picture}">Aggiungi al carrello</div></div>
-                    </div>`;
-                container.innerHTML += itemHtml;
+              const itemHtml = `
+              <div class="object-card">
+                  <div class="object-img"><img src="${item.picture}"></div>
+                  <div class="object-buy"><div class="price">${item.price}€</div></div>
+                  <div class="object-title">${item.title}</div>
+                  ${item.quantity > 0 ?
+                      `<div class="object-cart">
+                          <div class="cart-icon"><img src="{% static 'images/cart.svg' %}"></div>
+                          <div class="cart-text" title="${item.title}" price="${item.price}" itemid="${item.id}" imgurl="${item.picture}">Aggiungi al carrello</div>
+                      </div>` :
+                      `<div class="object-cart-expired"><p>Esaurito</p></div>`
+                  }
+              </div>`;
+              container.innerHTML += itemHtml;
             });
             const cartTextElements = document.querySelectorAll('.object-cart');
             function updateCart(item) {
@@ -90,7 +96,14 @@
                     const itemIndex = Array.from(cartTextElements).indexOf(element);
                     const selectedItem = items[itemIndex];
 
-                    let cartText = element.children[1] 
+                    let cartText = element.children[1]
+                    let quantity = cartText.getAttribute('quantity')
+                    if ( parseInt(quantity) > 0 ) {
+                      cartText.setAttribute('quantity', parseInt(quantity) - 1)
+                    }
+                    if ( parseInt(quantity) === 1 ) {
+                      element.innerHTML = '<p>Esaurito</p>'
+                    }
                     // Call the addToCart function with the selected item
                     updateCart({
                       id: cartText.getAttribute('itemid'),
