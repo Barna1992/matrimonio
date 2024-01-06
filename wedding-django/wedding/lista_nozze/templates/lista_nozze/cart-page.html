@@ -73,6 +73,7 @@
                 quantityInput.type = 'number';
                 quantityInput.value = item.quantity;
                 quantityInput.min = 1;
+                quantityInput.max = item.quantityAvailable
                 quantityInput.addEventListener('input', function () {
                     // Update quantity and recalculate total
                     item.quantity = parseInt(quantityInput.value);

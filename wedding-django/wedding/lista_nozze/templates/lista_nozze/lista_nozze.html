@@ -84,7 +84,8 @@
                       title: item.title,
                       price: item.price,
                       quantity: 1,
-                      img: item.img
+                      img: item.img,
+                      quantityAvailable: parseInt(item.quantityAvailable) + 1,
                   });
               }
 
@@ -114,7 +115,8 @@
                       id: cartText.getAttribute('itemid'),
                       title: cartText.title,
                       price: cartText.getAttribute('price'),
-                      img: cartText.getAttribute('imgurl')
+                      img: cartText.getAttribute('imgurl'),
+                      quantityAvailable: cartText.getAttribute('quantity'),
                     })
                     getCart()
                     const badgeIcon = document.querySelector('.navbar-menu .badge');
