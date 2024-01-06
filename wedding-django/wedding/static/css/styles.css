@@ -379,7 +379,8 @@ body, html {
   padding: 1.5rem;
   font-weight: bold;
   font-size: 2rem;
-  color:#000
+  color:#000;
+  height: 10rem;
 }
 
 .object-buy {
@@ -733,6 +734,10 @@ body, html {
   .small-screen {
     display: block;
   }
+  .object-title { 
+    height: auto;
+  }
+ 
   
   .large-screen {
     display: none;
