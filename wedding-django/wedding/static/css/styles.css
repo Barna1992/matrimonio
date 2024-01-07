@@ -208,16 +208,16 @@ body, html {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.4rem;
+    font-size: 2.5rem;
     font-weight: bold;
     color: #fff;
-    background: #009688;
+    background: #015f97f2;
   }
 
   .desc {
     padding: 2rem;
     text-align: left;
-    background-color: #8dbedd;
+    background-color: #aaf7ff;
   }
 }
 
@@ -300,6 +300,7 @@ body, html {
   color: black;
   text-align: center;
   padding: 1rem;
+  font-size: 3rem;
 }
 
 .desc p {
@@ -564,7 +565,7 @@ body, html {
   border: solid 3px #8dbedd;
   padding: 1.5rem;
   border-radius: 50%;
-  background-color: #8dbedd;
+  background-color: #aaf7ff;
   animation: iconAnimation 3s ease forwards;
 }
 
@@ -594,6 +595,7 @@ body, html {
 
 #wedding-list h2 {
   text-align: center;
+  font-size: 2.5rem;
 }
 
 .navbar-menu {
@@ -676,6 +678,13 @@ body, html {
 
 .large-screen {
   display: block;
+}
+
+.agenda h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  font-family: 'Caveat';
+  padding: 2rem 0;
 }
 
 @media screen and (max-width: 500px) {
@@ -828,4 +837,10 @@ body, html {
 
 .shake-effect {
   animation: shakeAnimation 1s ease-in-out;
+}
+
+
+.image-container-timeline {
+  display: flex;
+  justify-content: center;
 }
