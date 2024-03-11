@@ -18,6 +18,7 @@
         form {
             max-width: 600px;
             margin: 0 auto;
+            width: 80%;
         }
 
         label {
@@ -50,12 +51,22 @@
         }
         h1 {
             text-align: center;
+            border-top: 4px solid #69b5f752;
+            padding-top: 1rem;
+            margin: 15px;
+        }
+        img {
+           max-width: 100%!important;     
+        }
+        .item-title {
+            text-align: center;
+            padding: 1rem;
         }
     </style>
         <link rel="stylesheet" href="/static/css/cart-style.css">
 
 </head>
-<body>
+<body class="cart-page">
 
     <h1>Riepilogo del tuo regalo</h1>
     <div id="cart-items-container">
@@ -110,6 +121,11 @@
                 const imageItem = document.createElement('img');
                 imageItem.src = item.img;
 
+                const imageContainer = document.createElement('div');
+                imageContainer.className = 'image-container'
+
+                imageContainer.appendChild(imageItem)
+
                 // Display item details
                 const itemDetails = document.createElement('div');
                 itemDetails.className = 'item-title'
@@ -117,7 +133,7 @@
 
 
                 // Append elements to the cart item div
-                cartItemDiv.appendChild(imageItem);
+                cartItemDiv.appendChild(imageContainer);
                 cartItemDiv.appendChild(itemDetails);
 
                 // Append the cart item div to the container

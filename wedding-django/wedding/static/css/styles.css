@@ -42,6 +42,18 @@ body, html {
   font-family: 'Caveat';
 }
 
+.hero-section-bg-lista {
+  /* background-image: url('/static/images/bg0.jpeg');   Replace with your image URL */
+  justify-content: center;
+  align-items: end;
+  flex-direction: row !important;
+  background-size: contain;
+  background-position: center;
+  transition: background-image 0.5s ease-in-out; 
+  font-family: 'Caveat';
+  background-color: #abd0f0;
+}
+
 /* Navigation bar styles */
 .top-nav ul {
   list-style: none;
@@ -334,6 +346,7 @@ body, html {
 .object-card {
   background-color: white;
   margin: 1.5rem;
+  max-width: 320px;
 }
 
 
@@ -441,9 +454,6 @@ body, html {
   text-align: center;
 }
 
-.lista-nozze-container {
-  display: flex;
-}
 
 .add {
   background-color: #4985C3;
@@ -475,8 +485,12 @@ body, html {
   animation: marginAnimation 3s ease forwards;
 }
 
+.empty-p {
+  height: 300px;
+}
+
 .countdown-bg {
-  background-image: url('/static/images/contdown.jpg');
+  background-image: url('/static/images/cdown.png');
   background-size: cover;
   background-position: center;
   width: 100%;
@@ -504,7 +518,7 @@ body, html {
 .widget-wrap {
   padding: 40px;
   border-radius: 20px;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.1);
   width: 50%;
   margin-left: 25%;
   margin-top: 5%;
@@ -687,6 +701,21 @@ body, html {
   padding: 2rem 0;
 }
 
+.lista-nozze-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.lista-nozze-container .object-card {
+  margin: 2.5rem;
+}
+
+#wedding_list h2 {
+  font-size: 3rem;
+  padding: 3.5rem;
+}
+
 @media screen and (max-width: 500px) {
   .top-nav {
       display: none;
@@ -706,7 +735,7 @@ body, html {
   .widget-wrap {
     padding: 40px 5px;
     border-radius: 20px;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.1);
     width: 50%;
     margin-left: 25%;
     margin-top: 5%;
@@ -723,10 +752,20 @@ body, html {
     display: block;
     min-width: auto;
   }
+  .countdown .text {
+    color: #000;
+  }
+
   .countdown-bg {
     background-position: left;
     padding-bottom: 2rem;
+    background-image: url('/static/images/cdown_long.png');
   }
+
+  .empty-p {
+    height: 200px;
+  }
+
   .cell {
     display: flex;
     justify-content: space-between;
