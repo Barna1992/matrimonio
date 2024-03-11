@@ -14,8 +14,12 @@
 </head>
 <body>
 <div>
-  <div class="navbar-menu">
-    <a href="cart"><img src="{% static 'images/cart_black.svg' %}"></a>
+  <div class="navbar-menu" style="display: flex; justify-content: space-between;">
+    <div style="margin-left: 0.5rem;">
+    <a href="#travel-gift"><img src="{% static 'images/flight.svg' %}"></a>
+    <a href="#home-gift"><img src="{% static 'images/home.svg' %}"></a>
+  </div><div>
+    <a href="cart"><img src="{% static 'images/cart_black.svg' %}"></a></div>
     <div class="badge" id="cartBadge">0</div>
   </div>
 
@@ -55,7 +59,7 @@
         .then(response => response.json())
         .then(items => {
             const container = document.getElementById('items-container');
-            items.forEach(item => {
+            items.filter(i => i.category === "travel").forEach(item => {
               const itemHtml = `
               <div class="object-card">
                   <div class="object-img"><img src="${item.picture}"></div>
@@ -70,6 +74,25 @@
                   }
               </div>`;
               container.innerHTML += itemHtml;
+            });
+
+            const homeContainer = document.getElementById('home-items-container');
+            items.filter(i => i.category === "home").forEach(item => {
+              console.log(item)
+              const itemHtml = `
+              <div class="object-card">
+                  <div class="object-img"><img src="${item.picture}"></div>
+                  <div class="object-buy"><div class="price">${item.price}€</div></div>
+                  <div class="object-title">${item.title}</div>
+                  ${item.quantity > 0 ?
+                      `<div class="object-cart">
+                          <div class="cart-icon"><img src="{% static 'images/cart.svg' %}"></div>
+                          <div class="cart-text" title="${item.title}" price="${item.price}" itemid="${item.id}" imgurl="${item.picture}" quantity="${item.quantity}">Aggiungi al carrello</div>
+                      </div>` :
+                      `<div class="object-cart-expired"><p>Esaurito</p></div>`
+                  }
+              </div>`;
+              homeContainer.innerHTML += itemHtml;
             });
             const cartTextElements = document.querySelectorAll('.object-cart');
             function updateCart(item) {
