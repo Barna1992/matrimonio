@@ -4,7 +4,7 @@ from .models import Item, Friend
 class ItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Item
-        fields = ['id', 'title', 'price', 'picture', 'quantity']
+        fields = ['id', 'title', 'price', 'picture', 'quantity', 'category']
 
 
 class FriendSerializer(serializers.ModelSerializer):
