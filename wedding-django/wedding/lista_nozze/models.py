@@ -10,7 +10,8 @@ class Item(models.Model):
     price = models.IntegerField()
     picture = models.ImageField(upload_to='pictures/', blank=True, null=True)
     quantity = models.IntegerField()
-    category = models.CharField(max_length=20, choices=CATEGORY_CHOICES, default='travel') 
+    category = models.CharField(max_length=20, choices=CATEGORY_CHOICES, default='travel')
+    ordering = models.IntegerField(default=0) 
 
     def __str__(self):
         return self.title
