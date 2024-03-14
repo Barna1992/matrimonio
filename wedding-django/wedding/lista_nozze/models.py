@@ -26,3 +26,10 @@ class Friend(models.Model):
 
     def __str__(self):
         return self.name
+    
+class Food(models.Model):
+    name = models.CharField(max_length=255)
+    comment = models.TextField()
+
+    def __str__(self):
+        return self.name

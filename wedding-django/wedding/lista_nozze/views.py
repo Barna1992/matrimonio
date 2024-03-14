@@ -1,6 +1,6 @@
 from rest_framework import viewsets
-from .models import Item, Friend
-from .serializers import ItemSerializer, FriendSerializer
+from .models import Item, Friend, Food
+from .serializers import ItemSerializer, FriendSerializer, FoodSerializer
 
 class ItemViewSet(viewsets.ModelViewSet):
     queryset = Item.objects.all()
@@ -9,6 +9,10 @@ class ItemViewSet(viewsets.ModelViewSet):
 class FriendViewSet(viewsets.ModelViewSet):
     queryset = Friend.objects.all()
     serializer_class = FriendSerializer
+
+class FoodViewSet(viewsets.ModelViewSet):
+    queryset = Food.objects.all()
+    serializer_class = FoodSerializer
 
 from django.shortcuts import render
 
@@ -30,3 +34,6 @@ def summary(request):
 
 def thanks(request):
     return render(request, 'lista_nozze/thanks.html')
+
+def food(request):
+    return render(request, 'food.html')
