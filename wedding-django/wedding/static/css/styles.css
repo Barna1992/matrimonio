@@ -339,8 +339,8 @@ body, html {
 .img-card {
   padding: 1rem;
   border-radius: 20%;
-  max-width: 12rem;
-  max-height: 12rem;  
+  max-width: 14rem;
+  max-height: 14rem;  
 }
 
 .object-card {
