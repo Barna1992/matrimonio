@@ -32,7 +32,6 @@ def send_email(destination, html):
 
 def make_html(giftGiver, price):
     html_content = """
-    <!DOCTYPE html>
     <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -61,15 +60,15 @@ def make_html(giftGiver, price):
 
         <div class="container">
         <h1>Grazie mille!</h1>
-        <p>Grazie {} per il tuo contributo!</p>
-        <p>Puoi completare il regalo, effettuando il pagamento di <strong> {} € </strong> tramite un bonifico bancario al seguente IBAN:</p>
+        <p>Grazie {0} per il tuo contributo!</p>
+        <p>Puoi completare il regalo, effettuando il pagamento di <strong> {1} € </strong> tramite un bonifico bancario al seguente IBAN:</p>
         <p></p>
         <p>IBAN</p>
         </div>
     </body>
     </html>
-    """.format(giftGiver, price)
-    return html_content
+    """
+    return html_content.format(giftGiver, price)
 
 
 class ItemViewSet(viewsets.ModelViewSet):
