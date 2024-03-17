@@ -180,7 +180,7 @@
             // Iterate over the selected elements
             itemTitleElements.forEach(itemTitleElement => {
                 // Append the innerText of each element to the merged string
-                mergedString += itemTitleElement.innerText + '*,*';
+                mergedString += itemTitleElement.innerText + ' , ';
             });
 
             itemIdElements.forEach(element => {
@@ -210,6 +210,7 @@
                     contentType: 'application/json',
                     data: JSON.stringify(data),
                     success: function(result) {
+                        console.log(result)
                         window.location.href = url;
                     },
                     error: function(error) {
