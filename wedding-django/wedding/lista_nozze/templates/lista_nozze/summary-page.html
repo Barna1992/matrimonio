@@ -117,6 +117,11 @@
                 const cartItemDiv = document.createElement('div');
                 cartItemDiv.className = 'cart-item';
 
+                const cartItemSpan = document.createElement('span');
+                cartItemSpan.style = 'display:none';
+                cartItemSpan.setAttribute("id", `${item.id}-${item.quantity}`)
+                cartItemSpan.className = 'items-info'
+
                 // Display image
                 const imageItem = document.createElement('img');
                 imageItem.src = item.img;
@@ -130,6 +135,7 @@
                 const itemDetails = document.createElement('div');
                 itemDetails.className = 'item-title'
                 itemDetails.innerHTML = `${item.title}`;
+                itemDetails.appendChild(cartItemSpan);
 
 
                 // Append elements to the cart item div
@@ -165,14 +171,21 @@
             // Construct URL with form values
 
             const itemTitleElements = document.querySelectorAll('.item-title');
+            const itemIdElements = document.querySelectorAll('.items-info');
 
             // Initialize an empty string to store merged values
             let mergedString = '';
+            let StringIds = [];
 
             // Iterate over the selected elements
             itemTitleElements.forEach(itemTitleElement => {
                 // Append the innerText of each element to the merged string
-                mergedString += itemTitleElement.innerText + ' ';
+                mergedString += itemTitleElement.innerText + '*,*';
+            });
+
+            itemIdElements.forEach(element => {
+                // Append the innerText of each element to the merged string
+                StringIds.push(element.id);
             });
 
             const itemTitles = mergedString;
@@ -183,10 +196,10 @@
                 name: giftGiverValue,
                 email: yourEmailValue,
                 comment: commentValue,
+                string_ids: StringIds,
                 item_titles: itemTitles,  // Match the field name in your model
                 item_price: parseFloat(itemPrice),  // Convert to float
             };
-
 
             const url = `/lista_nozze/thanks?giftGiver=${encodeURIComponent(giftGiverValue)}&yourEmail=${encodeURIComponent(yourEmailValue)}&comment=${encodeURIComponent(commentValue)}&price=${encodeURIComponent(parseFloat(itemPrice))}`;
 
