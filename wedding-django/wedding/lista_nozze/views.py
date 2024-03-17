@@ -1,8 +1,7 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, status
 from .models import Item, Friend, Food
 from .serializers import ItemSerializer, FriendSerializer, FoodSerializer
 from rest_framework.response import Response
-from rest_framework import status
 
 def send_email(destination, html):
     import smtplib, ssl
@@ -39,11 +38,8 @@ def make_html(giftGiver, price):
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Ringraziamento</title>
-        <!-- Add any additional styles or scripts as needed -->
         <style>
-            /* Add your styling here */
             body {
-                font-family: Arial, sans-serif;
                 margin: 0;
                 padding: 20px;
             }
@@ -60,7 +56,6 @@ def make_html(giftGiver, price):
             }
 
         </style>
-        <link rel="stylesheet" href="/static/css/cart-style.css">
     </head>
     <body class="cart-page">
 
