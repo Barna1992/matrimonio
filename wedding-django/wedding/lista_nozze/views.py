@@ -38,21 +38,21 @@ def make_html(giftGiver, price):
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Ringraziamento</title>
         <style>
-            body {
+            body {{
                 margin: 0;
                 padding: 20px;
-            }
+            }}
 
-            h1 {
+            h1 {{
                 text-align: center;
                 padding: 1rem;
-            }
-            p {
+            }}
+            p {{
                 text-align: center;
-            }
-            .container {
+            }}
+            .container {{
                 padding: 4rem;
-            }
+            }}
 
         </style>
     </head>
@@ -67,8 +67,9 @@ def make_html(giftGiver, price):
         </div>
     </body>
     </html>
-    """
-    return html_content.format(giftGiver, price)
+    """.format(giftGiver, price)
+    return html_content
+
 
 
 class ItemViewSet(viewsets.ModelViewSet):
