@@ -7,18 +7,14 @@ def send_email(destination, html):
     import smtplib, ssl
     from email.mime.text import MIMEText
     from email.mime.multipart import MIMEMultipart
-
     sender_email = "matrimonioandreamicol@gmail.com"
     receiver_email = destination
     password = "niczbjdpbtuhxkdi"
-
     message = MIMEMultipart("alternative")
     message["Subject"] = "Matrimonio Andrea & Micol"
     message["From"] = sender_email
     message["To"] = receiver_email
-
     message.attach(MIMEText(html, "html"))
-
     # Create secure connection with server and send email
     context = ssl.create_default_context()
     with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
@@ -41,7 +37,6 @@ def make_html(giftGiver, price):
             body {{
                 margin: 0;
                 padding: 20px;
-                background-color: #abd0f0
             }}
 
             h1 {{
@@ -59,12 +54,12 @@ def make_html(giftGiver, price):
     </head>
     <body class="cart-page">
 
-        <div class="container">
+        <div class="container" style="background-color: #abd0f0 !important">
         <h1>Grazie mille!</h1>
         <p>Grazie {0} per il tuo contributo!</p>
         <p>Puoi completare il regalo, effettuando il pagamento di <strong> {1} € </strong> tramite un bonifico bancario al seguente IBAN:</p>
         <p></p>
-        <p>IT10W0851161230000000033059</p>
+        <p style="font-size: 2rem">IT10W0851161230000000033059</p>
         </div>
     </body>
     </html>
