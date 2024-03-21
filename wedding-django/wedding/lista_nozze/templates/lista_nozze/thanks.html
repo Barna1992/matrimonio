@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,7 +50,11 @@
         document.write(`<p>Puoi completare l'ordine effettuando il pagamento di <strong> ${price} € </strong> tramite un bonifico bancario al seguente IBAN:</p>`);
     </script>
     <p></p>
-    <p>IBAN</p>
+    <p style="font-size: 2rem">IT10W0851161230000000033059</p>
+    <div style="display: flex; justify-content: center;">
+        <img src="{% static 'images/logo.png' %}">
+    </div>
+    <p>Abbiamo mandato il riepilogo dell'ordine al tuo indirizzo email.</p>
     </div>
 </body>
 </html>

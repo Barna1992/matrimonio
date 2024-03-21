@@ -8,9 +8,9 @@ def send_email(destination, html):
     from email.mime.text import MIMEText
     from email.mime.multipart import MIMEMultipart
 
-    sender_email = "sportlerofferte@gmail.com"
+    sender_email = "matrimonioandreamicol@gmail.com"
     receiver_email = destination
-    password = "ntthqirswdjxukrz"
+    password = "niczbjdpbtuhxkdi"
 
     message = MIMEMultipart("alternative")
     message["Subject"] = "Matrimonio Andrea & Micol"
@@ -41,6 +41,7 @@ def make_html(giftGiver, price):
             body {{
                 margin: 0;
                 padding: 20px;
+                background-color: "#abd0f0"
             }}
 
             h1 {{
@@ -63,7 +64,7 @@ def make_html(giftGiver, price):
         <p>Grazie {0} per il tuo contributo!</p>
         <p>Puoi completare il regalo, effettuando il pagamento di <strong> {1} € </strong> tramite un bonifico bancario al seguente IBAN:</p>
         <p></p>
-        <p>IBAN</p>
+        <p>IT10W0851161230000000033059</p>
         </div>
     </body>
     </html>
