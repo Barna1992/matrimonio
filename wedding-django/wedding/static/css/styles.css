@@ -216,20 +216,26 @@ body, html {
   }
 
   .horaires {
-    flex-basis: 40%;
+    flex-basis: 60%;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 2.5rem;
+    font-size: 3.5rem;
     font-weight: bold;
-    color: #fff;
-    background: #015f97f2;
+    background-image: url('/static/images/girasoli.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
   }
 
   .desc {
     padding: 2rem;
     text-align: left;
-    background-color: #aaf7ff;
+    background-color: #ededed94;
+  }
+  .desc p {
+    font-size: 2.5rem;
+    padding: 2rem;
+    text-align: center;
   }
 }
 
@@ -579,7 +585,7 @@ body, html {
   border: solid 3px #8dbedd;
   padding: 1.5rem;
   border-radius: 50%;
-  background-color: #aaf7ff;
+  background-color: #fff;
   animation: iconAnimation 3s ease forwards;
 }
 
