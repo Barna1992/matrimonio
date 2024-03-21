@@ -41,7 +41,7 @@ def make_html(giftGiver, price):
             body {{
                 margin: 0;
                 padding: 20px;
-                background-color: "#abd0f0"
+                background-color: #abd0f0
             }}
 
             h1 {{
