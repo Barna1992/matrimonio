@@ -742,6 +742,12 @@ body, html {
   #welcome {
     height: 2400px;
   }
+  .agenda__item__detail {
+    &::before {
+      display: none;
+    }
+  }
+
   .widget-wrap {
     padding: 40px 5px;
     border-radius: 20px;
