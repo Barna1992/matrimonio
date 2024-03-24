@@ -239,6 +239,13 @@ body, html {
   }
 }
 
+.fumetto-rifugio {
+  position: absolute;
+  z-index: 1;
+  width: 20rem;
+  left: 10%;
+  margin-top: 40rem;
+}
 
 .agenda__item {
 
@@ -746,6 +753,13 @@ body, html {
     &::before {
       display: none;
     }
+  }
+  .fumetto-rifugio {
+    position: absolute;
+    z-index: 1;
+    width: 16rem;
+    left: 5%;
+    margin-top: -5rem;
   }
 
   .widget-wrap {
