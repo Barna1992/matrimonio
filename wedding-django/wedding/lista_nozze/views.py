@@ -1,6 +1,6 @@
-from rest_framework import viewsets, status
-from .models import Item, Friend, Food
-from .serializers import ItemSerializer, FriendSerializer, FoodSerializer
+from rest_framework import viewsets, status, generics
+from .models import Item, Friend, Food, Survey
+from .serializers import ItemSerializer, FriendSerializer, FoodSerializer, SurveySerializer
 from rest_framework.response import Response
 
 def send_email(destination, html):
@@ -66,6 +66,13 @@ def make_html(giftGiver, price):
     """.format(giftGiver, price)
     return html_content
 
+class SurveyCreateView(generics.CreateAPIView):
+    queryset = Survey.objects.all()
+    serializer_class = SurveySerializer
+
+class SurveyListView(generics.ListAPIView):
+    queryset = Survey.objects.all()
+    serializer_class = SurveySerializer
 
 
 class ItemViewSet(viewsets.ModelViewSet):
@@ -121,3 +128,6 @@ def thanks(request):
 
 def food(request):
     return render(request, 'food.html')
+
+def survey(request):
+    return render(request, 'lista_nozze/survey.html')

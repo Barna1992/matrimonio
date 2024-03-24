@@ -33,3 +33,13 @@ class Food(models.Model):
 
     def __str__(self):
         return self.name
+    
+
+class Survey(models.Model):
+    nome = models.CharField(max_length=100)
+    salgo_al_rifugio = models.BooleanField()
+    dormo_al_rifugio = models.BooleanField()
+    numero_di_persone = models.PositiveIntegerField()
+
+    def __str__(self):
+        return self.nome
