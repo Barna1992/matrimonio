@@ -4,7 +4,7 @@ from .models import Item, Friend, Food, Survey
 class ItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Item
-        fields = ['id', 'title', 'price', 'picture', 'quantity', 'category']
+        fields = '__all__'
 
 
 class FriendSerializer(serializers.ModelSerializer):
