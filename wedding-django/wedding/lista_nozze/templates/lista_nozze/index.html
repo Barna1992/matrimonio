@@ -187,20 +187,28 @@
   
   
   document.addEventListener('DOMContentLoaded', function() {
-      const images = [
-          '/static/images/bg1.jpeg', // Add more image URLs
-          '/static/images/bg2.jpeg',
-          '/static/images/bg0.jpeg',
-        ];
-      let currentIndex = 0;
-  
-      function changeBackground() {
-          currentIndex = (currentIndex + 1) % images.length; // Cycle through images
-          document.querySelector('.hero-section-bg').style.backgroundImage = `url('${images[currentIndex]}')`;
-      }
-  
-      setInterval(changeBackground, 5000); // Change every 10000 milliseconds (10 seconds)
-  });
+    const images = [
+        '/static/images/bg1.jpeg', // Add more image URLs
+        '/static/images/bg2.jpeg',
+        '/static/images/bg0.jpeg',
+    ];
+    let currentIndex = 0;
+
+    // Preload images
+    const imageObjects = [];
+    images.forEach(function(imageUrl) {
+        const img = new Image();
+        img.src = imageUrl;
+        imageObjects.push(img);
+    });
+
+    function changeBackground() {
+        currentIndex = (currentIndex + 1) % images.length; // Cycle through images
+        document.querySelector('.hero-section-bg').style.backgroundImage = `url('${images[currentIndex]}')`;
+    }
+
+    setInterval(changeBackground, 5000); // Change every 5000 milliseconds (5 seconds)
+});
   
   document.addEventListener('DOMContentLoaded', function() {
       var navItems = document.querySelectorAll('#navbar-list li a'); // Select all anchor tags inside list items
