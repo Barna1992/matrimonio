@@ -42,6 +42,10 @@ body, html {
   font-family: 'Caveat';
 }
 
+.hero-section-bg {
+  transition: opacity 1s ease; /* Add transition for opacity */
+}
+
 .hero-section-bg-lista {
   /* background-image: url('/static/images/bg0.jpeg');   Replace with your image URL */
   justify-content: center;
