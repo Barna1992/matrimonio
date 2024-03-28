@@ -279,6 +279,10 @@ body, html {
       }
     }
 
+    .horaires {
+      background-image: url('/static/images/girasoli-phone.jpeg');
+    }
+
     .agenda__item__date {
       order: 1;
     }
