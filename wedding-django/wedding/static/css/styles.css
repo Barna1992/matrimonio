@@ -243,7 +243,7 @@ body, html {
   position: absolute;
   z-index: 1;
   width: 20rem;
-  left: 10%;
+  left: 150px;
   margin-top: 650px;
 }
 
@@ -758,7 +758,7 @@ body, html {
     position: absolute;
     z-index: 1;
     width: 16rem;
-    left: 5%;
+    left: 75px;
     margin-top: -5rem;
   }
 
