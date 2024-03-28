@@ -4,6 +4,7 @@ from .models import Item, Friend, Food, Survey
 class ItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Item
+        ordering = ['ordering']
         fields = '__all__'
 
 
