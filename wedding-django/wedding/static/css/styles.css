@@ -279,10 +279,6 @@ body, html {
       }
     }
 
-    .horaires {
-      background-image: url('/static/images/girasoli-phone.jpeg');
-    }
-
     .agenda__item__date {
       order: 1;
     }
@@ -741,6 +737,9 @@ body, html {
 @media screen and (max-width: 500px) {
   .top-nav {
       display: none;
+  }
+  .horaires {
+    background-image: url('/static/images/girasoli-phone.jpeg') !important;
   }
   .agenda__item__title {
     font-size: 2.5rem;
