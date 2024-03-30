@@ -127,13 +127,12 @@
 
                 // Collect form data
                 const formData = {
-                    nome: form.nome.value,
+                    name: form.nome.value,
                     allergie: form.allergie.value,
                     pesce: form.pesce.value === "yes",
                     vegetariano: form.vegetariano.value === "yes",
                 };
 
-                console.log(formData)
 
                 // POST data to API endpoint
                 fetch('https://matrimonioam.pythonanywhere.com/api/foods/', {
@@ -146,8 +145,6 @@
                 .then(response => response.json())
                 .then(data => {
                     console.log('Survey submitted:', data);
-                    // Call function to update chart with new data
-                    window.location.reload();
                 })
                 .catch(error => console.error('Error submitting survey:', error));
             });
