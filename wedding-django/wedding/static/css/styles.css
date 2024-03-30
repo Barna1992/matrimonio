@@ -624,6 +624,10 @@ body, html {
   max-width: 800px;
 }
 
+.subtitle {
+  font-size: 50px !important;
+}
+
 #wedding-list h2 {
   text-align: center;
   font-size: 2.5rem;
