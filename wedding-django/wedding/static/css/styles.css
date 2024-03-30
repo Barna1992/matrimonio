@@ -528,7 +528,7 @@ body, html {
 }
 
 #welcome h4, p {
-  font-size: 3rem !important;
+  font-size: 40px !important;
   padding: 3rem;
 }
 
@@ -621,6 +621,7 @@ body, html {
 
 .globe-img {
   padding: 2rem;
+  max-width: 800px;
 }
 
 #wedding-list h2 {
