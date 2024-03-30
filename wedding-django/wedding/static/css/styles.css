@@ -749,6 +749,10 @@ body, html {
     padding: 50px;
   }
 
+  #welcome p {
+    font-size: 40px !important;
+  }
+
 
   .top-nav {
       display: none;
@@ -769,7 +773,7 @@ body, html {
     height: 100vh;
   }
   #welcome {
-    height: 2600px;
+    height: 2900px;
   }
   .agenda__item__detail {
     &::before {
@@ -810,7 +814,7 @@ body, html {
 
   .countdown-bg {
     background-position: left;
-    padding-bottom: 2rem;
+    padding-top: 2rem;
     background-image: url('/static/images/cdown_long.png');
   }
 
