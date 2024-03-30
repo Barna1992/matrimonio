@@ -1,197 +1,158 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" type="image/x-icon" href="assets/wedding.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Finalizza</title>
-    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-    <!-- Add any additional styles or scripts as needed -->
+    <title>Informazioni Ristorante</title>
+    <link href='https://fonts.googleapis.com/css?family=Amatic+SC' rel='stylesheet'>
+
     <style>
         /* Add your styling here */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 20px;
+            background-color: #abd0f0b0; 
         }
 
-        form {
-            max-width: 600px;
-            margin: 0 auto;
-            width: 80%;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-        }
-
-        input,
-        textarea {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 16px;
-            box-sizing: border-box;
-        }
-
-        textarea {
-            resize: vertical; /* Allow vertical resizing of the textarea */
-        }
-
-        button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #45a049;
-        }
-        h1 {
-            text-align: center;
-            border-top: 4px solid #69b5f752;
-            padding-top: 1rem;
-            margin: 15px;
-        }
-        img {
-           max-width: 100%!important;     
-        }
-        .item-title {
+        h1, h2 {
             text-align: center;
             padding: 1rem;
+            font-family: 'Amatic SC';
+            font-size: 2rem;
+        }
+        p {
+            text-align: center;
+        }
+        .container {
+            padding: 4rem;
+        }
+        textarea {
+            width: 100%;
+        }
+        form {
+            max-width: 700px;
+            margin: 0 50px;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #84b6e1;
+            font-size: 1.5rem;
+        }
+        #chart-container {
+            max-width: 75%;
+            margin: 5rem 10%;
+            padding: 2.5rem;
+            background-color: #fff;
+            border-radius: 1%;
+            height: 60vh;
+        }
+        .img-bed {
+            display: none;
+        }
+        img {
+            max-width: 500px!important;
+        }
+        .form-container {
+            display: flex;
+            justify-content: center;
+        }
+        @media (max-width: 768px) {
+            /* Styles for screens smaller than 768px (typical mobile devices) */
+            .form-container {
+                display: block;
+            }
+            #chart-container {
+                max-width: 80%; /* Adjust as needed */
+                margin: 10% 10%;
+                padding: auto;
+                height: 100vh;
+            }
+            #numero_di_persone {
+                max-width: 50px;
+            }
+            form {
+                margin: auto 5%;
+                font-size: 1.4rem;
+            }
+            .img-bed {
+                max-width: 300px !important;
+                margin-left: 50px;
+                display:block;
+            }
+            .img-bed-side {
+                display:none;
+            }
+            img {
+                max-width: 300px!important;
+            }
         }
     </style>
-        <link rel="stylesheet" href="/static/css/cart-style.css">
-
+    <link rel="stylesheet" href="/static/css/cart-style.css">
 </head>
-<body class="cart-page">
+<body>
+    <h1>Informazioni per il ristorante</h1>
+    <div class="form-container">
+        <form id="survey-form">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" required><br><br>
 
-    <h1>Pranzo di nozze!</h1>
+            <label for="allergie">Segnalaci eventuali allergie / intolleranze alimentari</label>
+            <textarea id="allergie" name="allergie" rows="4" required></textarea><br><br>
 
+            <label for="pesce">Ti piace il pesce?</label><br>
+            <input type="radio" id="pesce-yes" name="pesce" value="yes">
+            <label for="pesce-yes">Si</label>
+            <input type="radio" id="pesce-no" name="pesce" value="no">
+            <label for="pesce-no">No</label><br><br>
 
-    <form>
-        <label for="giftGiver">Chi sei</label>
-        <input type="text" id="giftGiver" name="giftGiver" required>
+            <label for="vegetariano">Preferisci un menù vegetariano?</label><br>
+            <input type="radio" id="vegetariano-yes" name="vegetariano" value="yes">
+            <label for="vegetariano-yes">Si</label>
+            <input type="radio" id="vegetariano-no" name="vegetariano" value="no">
+            <label for="vegetariano-no">No</label><br><br>
 
-        <label for="comment">Segnalaci eventuali allergie o intolleranze alimentari</label>
-        <textarea id="comment" name="comment" rows="4" required></textarea>
-
-        <button type="submit" onclick="submitForm()">Invia</button>
-    </form>
+            <button type="submit">Invia</button>
+        </form>
+    </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Retrieve the cart from localStorage
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        document.addEventListener('DOMContentLoaded', function() {
+            // Function to fetch survey data and update chart
+            const form = document.getElementById('survey-form');
 
-            // Get the container to display cart items
-            const cartItemsContainer = document.getElementById('cart-items-container');
+            // Add submit event listener
+            form.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent default form submission
 
-            // Loop through each item in the cart
-            cart.forEach(item => {
-                // Try casting item.price to float
-                try {
-                    item.price = parseFloat(item.price);
-                    if (isNaN(item.price)) {
-                        throw new Error('Invalid price');
-                    }
-                } catch (error) {
-                    console.error('Invalid price for item:', item);
-                    return;
-                }
+                // Collect form data
+                const formData = {
+                    nome: form.nome.value,
+                    allergie: form.allergie.value,
+                    pesce: form.pesce.value === "yes",
+                    vegetariano: form.vegetariano.value === "yes",
+                };
 
-                // Create a div for each item
-                const cartItemDiv = document.createElement('div');
-                cartItemDiv.className = 'cart-item';
+                console.log(formData)
 
-                // Display image
-                const imageItem = document.createElement('img');
-                imageItem.src = item.img;
-
-                const imageContainer = document.createElement('div');
-                imageContainer.className = 'image-container'
-
-                imageContainer.appendChild(imageItem)
-
-                // Display item details
-                const itemDetails = document.createElement('div');
-                itemDetails.className = 'item-title'
-                itemDetails.innerHTML = `${item.title}`;
-
-
-                // Append elements to the cart item div
-                cartItemDiv.appendChild(imageContainer);
-                cartItemDiv.appendChild(itemDetails);
-
-                // Append the cart item div to the container
-                cartItemsContainer.appendChild(cartItemDiv);
-
-                // Update the total for the initial cart
-                updateTotal(cart);
-            });
-        });
-
-        function updateTotal(cart) {
-            const totalPriceElement = document.getElementById('total-price');
-            const totalPrice = cart.reduce((acc, item) => {
-                // Ensure item.price is a valid number before adding to the total
-                if (!isNaN(item.price)) {
-                    acc += item.price * item.quantity;
-                }
-                return acc;
-            }, 0);
-            totalPriceElement.innerText = totalPrice.toFixed(2);
-        }
-
-        function submitForm() {
-            // Get form values
-            const giftGiverValue = document.getElementById('giftGiver').value;
-            const commentValue = document.getElementById('comment').value;
-            event.preventDefault();
-            // Construct URL with form values
-
-            const itemTitleElements = document.querySelectorAll('.item-title');
-
-            // Initialize an empty string to store merged values
-            let mergedString = '';
-
-            // Iterate over the selected elements
-            itemTitleElements.forEach(itemTitleElement => {
-                // Append the innerText of each element to the merged string
-                mergedString += itemTitleElement.innerText + ' ';
-            });
-
-            const itemTitles = mergedString;
-            const itemPrice = document.getElementById("total-price").innerText;
-
-            // Prepare data for POST request
-            const data = {
-                name: giftGiverValue,
-                comment: commentValue,
-            };
-
-
-            
-            $.ajax({
-                    url: 'https://matrimonioam.pythonanywhere.com/api/foods/',
+                // POST data to API endpoint
+                fetch('', {
                     method: 'POST',
-                    contentType: 'application/json',
-                    data: JSON.stringify(data),
-                    success: function(result) {
-                        window.location.href = '/';
+                    headers: {
+                        'Content-Type': 'application/json'
                     },
-                    error: function(error) {
-                        console.error('Error:', error);
-                    }
-                });
+                    body: JSON.stringify(formData)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Survey submitted:', data);
+                    // Call function to update chart with new data
+                    window.location.reload();
+                })
+                .catch(error => console.error('Error submitting survey:', error));
+            });
 
-
-            
-        }
-
+        });
     </script>
-
 </body>
 </html>
