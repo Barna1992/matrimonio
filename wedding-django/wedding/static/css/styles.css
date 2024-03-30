@@ -734,6 +734,17 @@ body, html {
 }
 
 @media screen and (max-width: 500px) {
+  #welcome h1 {
+    font-size: 60px;
+    padding: 60px
+  }
+
+  #welcome h4, p {
+    font-size: 50px !important;
+    padding: 50px;
+  }
+
+
   .top-nav {
       display: none;
   }
@@ -753,7 +764,7 @@ body, html {
     height: 100vh;
   }
   #welcome {
-    height: 2400px;
+    height: 2600px;
   }
   .agenda__item__detail {
     &::before {
@@ -842,6 +853,7 @@ body, html {
     padding: 1rem;
     text-align: center;
     padding-top: 60px !important;
+    font-size: 50px;
   }
   .badge {
     position: absolute;
