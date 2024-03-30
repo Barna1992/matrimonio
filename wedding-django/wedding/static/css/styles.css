@@ -621,7 +621,6 @@ body, html {
 
 .globe-img {
   padding: 2rem;
-  max-width: 500px;
 }
 
 #wedding-list h2 {
@@ -837,7 +836,7 @@ body, html {
   }
   .globe-img {
     padding: 1rem;
-    max-width: 300px;
+    max-width: 400px;
   }
   #wedding_list h2 {
     padding: 1rem;
