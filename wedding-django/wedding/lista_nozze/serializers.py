@@ -16,7 +16,8 @@ class FriendSerializer(serializers.ModelSerializer):
 class FoodSerializer(serializers.ModelSerializer):
     class Meta:
         model = Food
-        fields = ['id', 'name', 'comment']
+        fields = '__all__'
+
 
 class SurveySerializer(serializers.ModelSerializer):
     class Meta:
