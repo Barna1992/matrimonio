@@ -251,6 +251,10 @@ body, html {
   margin-top: 700px;
 }
 
+.allergie {
+  margin-top: 450px !important;  
+}
+
 .agenda__item {
 
    .agenda__item__detail {
@@ -786,6 +790,11 @@ body, html {
     width: 250px;
     left: 50px;
     margin-top: 900px;
+  }
+
+
+  .allergie {
+    margin-top: 500px !important;  
   }
 
   .widget-wrap {
