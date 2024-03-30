@@ -246,9 +246,9 @@ body, html {
 .fumetto-rifugio {
   position: absolute;
   z-index: 1;
-  width: 20rem;
+  width: 300px;
   left: 150px;
-  margin-top: 650px;
+  margin-top: 700px;
 }
 
 .agenda__item {
@@ -783,9 +783,9 @@ body, html {
   .fumetto-rifugio {
     position: absolute;
     z-index: 1;
-    width: 16rem;
-    left: 75px;
-    margin-top: -5rem;
+    width: 250px;
+    left: 50px;
+    margin-top: 900px;
   }
 
   .widget-wrap {
