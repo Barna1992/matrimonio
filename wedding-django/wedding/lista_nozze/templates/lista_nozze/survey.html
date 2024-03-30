@@ -30,7 +30,7 @@
         }
         form {
             max-width: 400px;
-            margin: 0 auto;
+            margin: 0 50px;
             border: 1px solid #ccc;
             padding: 20px;
             border-radius: 10px;
@@ -45,8 +45,21 @@
             border-radius: 1%;
             height: 60vh;
         }
+        .img-bed {
+            display: none;
+        }
+        img {
+            max-width: 500px!important;
+        }
+        .form-container {
+            display: flex;
+            justify-content: center;
+        }
         @media (max-width: 768px) {
     /* Styles for screens smaller than 768px (typical mobile devices) */
+            .form-container {
+                display: block;
+            }
             #chart-container {
                 max-width: 80%; /* Adjust as needed */
                 margin: 10% 10%;
@@ -60,6 +73,17 @@
                 margin: auto 5%;
                 font-size: 1.4rem;
             }
+            .img-bed {
+                max-width: 300px !important;
+                margin-left: 50px;
+                display:block;
+            }
+            .img-bed-side {
+                display:none;
+            }
+            img {
+                max-width: 300px!important;
+            }
         }
 
     </style>
@@ -67,6 +91,8 @@
 </head>
 <body>
     <h1>Sondaggio Rifugio</h1>
+    <div class="form-container">
+        <img class="img-bed" src="/static/images/letto.png">
     <form id="survey-form">
         <label for="nome">Nome:</label>
         <input type="text" id="nome" name="nome" required><br><br>
@@ -81,7 +107,8 @@
         <input type="number" id="numero_di_persone" name="numero_di_persone" min="1" required><br><br>
 
         <button type="submit">Invia</button>
-    </form>
+    </form><img class="img-bed-side" src="/static/images/letto.png">
+    </div>
 
     <h1 style="margin-top: 5rem">Risultati sondaggio</h1>
     <div id="chart-container">
