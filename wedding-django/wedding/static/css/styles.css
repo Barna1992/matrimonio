@@ -794,7 +794,8 @@ body, html {
 
 
   .allergie {
-    margin-top: 500px !important;  
+    margin-top: 500px !important;
+    z-index: 2;  
   }
 
   .widget-wrap {
