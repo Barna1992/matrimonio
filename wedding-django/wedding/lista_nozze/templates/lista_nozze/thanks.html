@@ -25,6 +25,17 @@
         .container {
             padding: 4rem;
         }
+        .iban {
+            font-size: 2rem
+        }
+        @media screen and (max-width: 500px) {
+            .iban {
+                font-size: 20px;
+            }
+            .container {
+                padding: 20px;
+            }
+        }
 
     </style>
     <link rel="stylesheet" href="/static/css/cart-style.css">
@@ -51,7 +62,7 @@
         document.write(`<p>Puoi completare l'ordine effettuando il pagamento di <strong> ${price} € </strong> tramite un bonifico bancario al seguente IBAN:</p>`);
     </script>
     <p></p>
-    <p style="font-size: 2rem">IT10W0851161230000000033059</p>
+    <p class="iban">IT10W0851161230000000033059</p>
     <div style="display: flex; justify-content: center;">
         <img src="{% static 'images/logo.png' %}">
     </div>
