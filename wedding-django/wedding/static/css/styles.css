@@ -668,6 +668,24 @@ body, html {
   font-weight: bolder;
 }
 
+footer {
+  background-color: #d3d3d338;
+  padding: 20px; 
+  text-align: center;
+  font-family: 'Caveat';
+  font-size: 30px;
+  p {
+    padding: 10px;
+  }
+  h1 {
+    font-size: 45px;
+  }
+}
+
+
+#home-items-container {
+  padding-bottom: 40px;
+}
 
 /* Styles for the closed menu button */
 .mobile-menu-button {
