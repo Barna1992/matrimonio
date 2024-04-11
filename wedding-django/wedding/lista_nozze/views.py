@@ -2,6 +2,11 @@ from rest_framework import viewsets, status, generics
 from .models import Item, Friend, Food, Survey
 from .serializers import ItemSerializer, FriendSerializer, FoodSerializer, SurveySerializer
 from rest_framework.response import Response
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.decorators import login_required
+
 
 def send_email(destination, html):
     import smtplib, ssl
@@ -131,3 +136,43 @@ def food(request):
 
 def survey(request):
     return render(request, 'lista_nozze/survey.html')
+
+
+
+def login_view(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(request, request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                # Redirect to a success page, or a specific URL
+                return redirect('dashboard')  # Assuming 'dashboard' is the name of the URL pattern for the dashboard page
+            else:
+                # Invalid login
+                return render(request, 'login.html', {'form': form, 'error_message': 'Invalid username or password'})
+    else:
+        form = AuthenticationForm()
+    return render(request, 'login.html', {'form': form})
+
+
+def logout_view(request):
+    logout(request)
+    # Redirect to a page after logout, or a specific URL
+    return redirect('login')
+
+
+@login_required
+def dashboard_view(request):
+    food_list = Food.objects.all()
+    survey_list = Survey.objects.all()
+    friend_list = Friend.objects.all()
+    
+    context = {
+        'food_list': food_list,
+        'survey_list': survey_list,
+        'friend_list': friend_list,
+    }
+    return render(request, 'dashboard.html', context)

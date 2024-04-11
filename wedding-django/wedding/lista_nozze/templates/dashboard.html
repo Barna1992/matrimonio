@@ -1,0 +1,141 @@
+<!-- dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        /* static/css/styles.css */
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 20px auto;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .table-container {
+            width: 30%;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table th, table td {
+            padding: 10px;
+            border: 1px solid #ccc;
+            text-align: left;
+        }
+
+        table th {
+            background-color: #f2f2f2;
+        }
+
+        table td {
+            background-color: #fff;
+        }
+</style>
+</head>
+<body>
+    <h2>Pannello amministrativo</h2>
+
+    <div class="container">
+        <div class="table-container">
+            <h2>Problemi alimentari</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Allergie</th>
+                        <th>Ti piace il pesce</th>
+                        <th>Sei vegetariano</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for food in food_list %}
+                        <tr>
+                            <td>{{ food.nome }}</td>
+                            <td>{{ food.allergie }}</td>
+                            <td>{{ food.pesce }}</td>
+                            <td>{{ food.vegetariano }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-container">
+            <h2>Chi dorme al rifugio</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Numero di persone</th>
+                        <th>Salgo al rifugio</th>
+                        <th>Dormo al rifugio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for survey in survey_list %}
+                        <tr>
+                            <td>{{ survey.nome }}</td>
+                            <td>{{ survey.numero_di_persone }}</td>
+                            <td>{{ survey.salgo_al_rifugio }}</td>
+                            <td>{{ survey.dormo_al_rifugio }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-container">
+            <h2>Regali</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Dedica</th>
+                        <th>Oggetti</th>
+                        <th>Costo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for friend in friend_list %}
+                        <tr>
+                            <td>{{ friend.nome }}</td>
+                            <td>{{ friend.dedica }}</td>
+                            <td>{{ friend.oggetti }}</td>
+                            <td>{{ friend.costo }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <p><a href="{% url 'logout' %}">Logout</a></p>
+</body>
+</html>
+

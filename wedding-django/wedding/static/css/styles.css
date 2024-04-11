@@ -775,6 +775,16 @@ footer {
     font-size: 40px !important;
   }
 
+  footer {
+    p {
+      padding: 10px;
+      font-size: 25px !important;
+    }
+    h1 {
+      font-size: 25px;
+    }
+  }
+
 
   .top-nav {
       display: none;
