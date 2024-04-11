@@ -20,10 +20,10 @@
 
         .container {
             width: 100%;
-            max-width: 1200px;
-            margin: 20px auto;
+            margin: 20px;
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
+            align-items: center;
         }
 
         .table-container {
@@ -32,6 +32,7 @@
             padding: 20px;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 30px;
         }
 
         h2 {
@@ -79,8 +80,8 @@
                         <tr>
                             <td>{{ food.name }}</td>
                             <td>{{ food.allergie }}</td>
-                            <td>{{ food.pesce }}</td>
-                            <td>{{ food.vegetariano }}</td>
+                            <td>{% if food.pesce %}✔️{% else %}❌{% endif %}</td>
+                            <td>{% if food.vegetariano %}✔️{% else %}❌{% endif %}</td>
                         </tr>
                     {% endfor %}
                 </tbody>
@@ -103,8 +104,8 @@
                         <tr>
                             <td>{{ survey.nome }}</td>
                             <td>{{ survey.numero_di_persone }}</td>
-                            <td>{{ survey.salgo_al_rifugio }}</td>
-                            <td>{{ survey.dormo_al_rifugio }}</td>
+                            <td>{% if survey.salgo_al_rifugio %}✔️{% else %}❌{% endif %}</td>
+                            <td>{% if survey.dormo_al_rifugio %}✔️{% else %}❌{% endif %}</td>
                         </tr>
                     {% endfor %}
                 </tbody>
