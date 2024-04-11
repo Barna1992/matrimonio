@@ -29,6 +29,7 @@ urlpatterns = [
     path('lista_nozze/summary/', summary, name='lista'),
     path('lista_nozze/thanks/', thanks, name='lista'),
     path('login/', login_view, name='login'),
+    path('account/login/', login_view, name='login'),
     path('logout/', logout_view, name='logout'), 
     path('dashboard/', dashboard_view, name='dashboard'),
 ]
