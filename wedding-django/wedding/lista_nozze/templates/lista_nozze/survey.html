@@ -97,11 +97,18 @@
         <label for="nome">Nome:</label>
         <input type="text" id="nome" name="nome" required><br><br>
 
-        <label for="salgo_al_rifugio">Pensi di salire al rifugio?</label>
-        <input type="checkbox" id="salgo_al_rifugio" name="salgo_al_rifugio"><br><br>
+        <label for="salgo_al_rifugio">Pensi di salire al rifugio?</label><br>
+        <input type="radio" id="si1" name="salgo_al_rifugio" value="si" required>
+        <label for="si1">Si</label>
+        <input type="radio" id="no1" name="salgo_al_rifugio" value="no" required>
+        <label for="no1">No</label><br><br>
 
-        <label for="dormo_al_rifugio">Pensi di dormire al rifugio?</label>
-        <input type="checkbox" id="dormo_al_rifugio" name="dormo_al_rifugio"><br><br>
+        <label for="dormo_al_rifugio">Pensi di dormire al rifugio?</label><br>
+        <input type="radio" id="si2" name="dormo_al_rifugio" value="si" required>
+        <label for="si2">Si</label>
+        <input type="radio" id="no2" name="dormo_al_rifugio" value="no" required>
+        <label for="no2">No</label><br><br>
+    
 
         <label for="numero_di_persone">Numero di persone:</label>
         <input type="number" id="numero_di_persone" name="numero_di_persone" min="1" required><br><br>
@@ -132,8 +139,8 @@ document.addEventListener('DOMContentLoaded', function() {
         // Collect form data
         const formData = {
             nome: form.nome.value,
-            salgo_al_rifugio: form.salgo_al_rifugio.checked,
-            dormo_al_rifugio: form.dormo_al_rifugio.checked,
+            salgo_al_rifugio: form.salgo_al_rifugio.value === "yes",
+            dormo_al_rifugio: form.dormo_al_rifugio.value === "yes",
             numero_di_persone: parseInt(form.numero_di_persone.value)
         };
 
