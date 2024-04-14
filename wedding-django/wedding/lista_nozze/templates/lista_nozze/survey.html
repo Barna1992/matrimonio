@@ -155,8 +155,9 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(response => response.json())
         .then(data => {
             console.log('Survey submitted:', data);
-            // Call function to update chart with new data
+            window.location.href = "/survey#chart-container";
             window.location.reload();
+            document.getElementById("survey-form").reset() 
         })
         .catch(error => console.error('Error submitting survey:', error));
     });
