@@ -6,6 +6,14 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
+from rest_framework import permissions
+
+class FriendPermission(permissions.BasePermission):
+    def has_permission(self, request, view):
+        if request.method == 'POST':
+            return True
+        return request.user and request.user.is_authenticated
+
 
 
 def send_email(destination, html):
@@ -87,6 +95,7 @@ class ItemViewSet(viewsets.ModelViewSet):
 class FriendViewSet(viewsets.ModelViewSet):
     queryset = Friend.objects.all()
     serializer_class = FriendSerializer
+    permission_classes = [FriendPermission]
 
     def create(self, request, *args, **kwargs):
         items = request.data.pop('string_ids', [])
